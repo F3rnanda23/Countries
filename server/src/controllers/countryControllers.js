@@ -1,10 +1,5 @@
-const axios = require('axios');
 
-const getCountries = async ()=> {
-    const allCountries = await axios.get('http://localhost:5000/countries');
-    const resultado= allCountries.data;
-    return resultado
-}
+
 
 const getCountryById= (id)=>{  //error
     const paises= getCountries()
@@ -16,7 +11,6 @@ const getCountryById= (id)=>{  //error
 };
 
 module.exports ={
-    getCountries,
     getCountryById
 }
 

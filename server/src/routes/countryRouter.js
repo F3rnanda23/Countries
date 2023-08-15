@@ -1,12 +1,9 @@
 const { Router }= require('express');
 const countryRouter = Router();
 
-const { getAllCountriesHandler, getCountryByIdhandler } =require('../handlers/HandlerCountry');
+const {  getCountryByIdhandler } =require('../handlers/HandlerCountry');
 
 
-
-
-countryRouter.get('/', getAllCountriesHandler);
 
 countryRouter.get('/algo/:id',getCountryByIdhandler);
 

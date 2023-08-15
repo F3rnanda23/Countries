@@ -15,11 +15,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imagenDeLaBandera: {
+    flags: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    continente:{
+    continents:{
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
     area:{
       type: DataTypes.FLOAT
     },
-    poblacion:{
+    population:{
       type: DataTypes.INTEGER,
       allowNull: false
     }
