@@ -53,33 +53,6 @@ const getCountryByIdhandler= async (req,res)=>{  //error
     
  };
 
-
-
-//  const allCoontruies =  async(req, res)=>{
-//     const { name } = req.query;
-//     try {
-//       if (name) {
-//         //si nombre existe se le pide al controller que busque en db y en api
-//         const traerPorNombre = await getCountriesByName(name);
-//         if (traerPorNombre) {
-//           return res.json(traerPorNombre);
-//         } else {
-//           return res.send(`${name} no fue encontrado);
-//         }
-//       } else {
-//         // sino dame todo
-//         const allPaises = await getCountries();
-//         return res.json(allPaises);
-//       }
-//     } catch (error) {
-//       //manejo si hay un error
-//       return res.status(400).send({ error: error.message });
-//     }
-// }
-// ese es el handler del que te trae todos los paises y y la busqueda por name
-
-
-
 module.exports={
     getCountryByIdhandler,
     allCountriesHandler,
