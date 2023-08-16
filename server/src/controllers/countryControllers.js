@@ -1,16 +1,30 @@
 
+const { Country }= require('../db')
 
 
-const getCountryById= (id)=>{  //error
-    const paises= getCountries()
-    const countryFound= paises.find(pais => pais.cca3 === id);
+const getAllCountries= async ()=>{
 
-    if(!countryFound) return {error:'No existe un país con ese ID' };
-    return countryFound;
+     const allCountry = await Country.findAll();
+     return allCountry;
+        
+
+};
+
+const getCountryById= async (id)=>{
+
+    const countryById = await Country.findByPk(id);
+    return countryById;
+
     
 };
 
+
+
+
+
 module.exports ={
-    getCountryById
+    getCountryById,
+    getAllCountries
 }
 
+//NO OLVIDAR!!!!! .......Tiene que incluir los datos de las actividades turísticas asociadas a este país.
