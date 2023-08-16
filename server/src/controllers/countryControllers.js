@@ -18,13 +18,28 @@ const getCountryById= async (id)=>{
     
 };
 
+const getCountryByName= async (name)=> {
+    
+    const countryFound = await Country.findOne({
+        where: {
+            name: name
+        }
+    });
+    if (!countryFound) {
+        return { error: 'No existe país con ese nombre' };
+    }
+    
+    return countryFound;
+};
+
 
 
 
 
 module.exports ={
     getCountryById,
-    getAllCountries
+    getAllCountries,
+    getCountryByName
 }
 
 //NO OLVIDAR!!!!! .......Tiene que incluir los datos de las actividades turísticas asociadas a este país.
