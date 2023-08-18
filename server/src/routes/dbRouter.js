@@ -4,8 +4,6 @@ const dbRouter = Router();
 const { getAllCountriesHandler } =require('../handlers/HandlerDb');
 
 
-
-
 dbRouter.post('/', getAllCountriesHandler);
 
 

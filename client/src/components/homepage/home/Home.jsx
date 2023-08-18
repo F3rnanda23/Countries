@@ -1,19 +1,28 @@
-import Cards from "../cards/Cards";
+
+import CardsPaises from "../cards/CardsPaises";
 import Navbar from "../navbar/Nabvar";
 
 
 const Home = () =>{
+//------------------navbar---------------------------
+    
+    //------------------------------navbar----------------------------
+
+    //-------------------cards-----------------------------------------
+
+    
+
     return (
-        <>
         <div>
-             <Navbar />
-        </div>
+            <div>
+                <Navbar />
+            </div>
 
-        <div>
-            <Cards />
-        </div>
+            <div>
+                <CardsPaises />
+            </div>
 
-        </>
+        </div>
     )
 }
 

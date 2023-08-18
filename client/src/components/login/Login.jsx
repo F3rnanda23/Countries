@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import validation from "./validation";
-import {Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import  style from './login.module.css';
 
 const Login = ()=>{  // OJO AQUI CON EL LOGIN 
@@ -39,10 +39,18 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
 
     };
 
+    //Es decir, cada vez que cambie el estado de errors o userData, se ejecutará el código dentro del bloque de useEffect {...}
+   //Object.values(errors): Esto toma el objeto errors y obtiene un array de sus valores. 
+   //El método .some() verifica si al menos un elemento en el array cumple con una condición.  error !== '', lo que significa "el error no es una cadena vacía".
+    //Si encuentra al menos un error que no esté vacío, la expresión completa se evaluará como verdadera.
+    //setIsSubmitDisabled(hasErrors):  actualiza el estado isSubmitDisabled con el valor de la variable hasErrors.
+     //Si hasErrors es true, significa que hay errores en los campos o están vacíos, por lo que el botón de envío debe estar deshabilitado. 
+
+
     useEffect(() => {
         const hasErrors = Object.values(errors).some(error => error !== '') || Object.values(userData).some(value => value === '');
         setIsSubmitDisabled(hasErrors);
-    }, [errors, userData]);
+    }, [errors, userData]); // useeff esta pendiente a si estos estados cambian
 
     const handleSubmit = (event) =>{
          event.preventDefault();
@@ -51,8 +59,7 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
 
         if (!isSubmitDisabled) {
             navigate("/home");
-        }
-            
+        }     
     };   
 
    
