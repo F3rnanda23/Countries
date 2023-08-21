@@ -1,5 +1,5 @@
 
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME } from '../redux/action-types'
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID } from '../redux/action-types'
 
 const initialState = {
     country: [],
@@ -33,6 +33,11 @@ const reducer = (state = initialState, action)=>{
                 country: action.payload,
             };        
                     
+        case GET_COUNTRY_BY_ID:
+            return {
+                ...state,
+                countryDetail: action.payload,
+            };
 
         default:
             return {...state}

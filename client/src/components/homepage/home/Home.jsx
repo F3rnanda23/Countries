@@ -15,12 +15,12 @@ const Home = () =>{
 
     return (
         <div>
+             <h2> COUNTRIES </h2>
             <div>
                 <Navbar />
             </div>
 
             <div>
-                <h2> COUNTRIES </h2>
                 <CardsPaises />
             </div>
 

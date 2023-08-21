@@ -39,7 +39,7 @@ const getCountryByIdhandler= async (req,res)=>{  //error
     
     try {
         const { idPais }= req.params; 
-        console.log(idPais)
+       
         const countryId= await getCountryById(idPais);
 
         if(!countryId) throw Error('El país no existe');
