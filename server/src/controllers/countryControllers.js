@@ -1,5 +1,6 @@
 
 const { Country }= require('../db')
+const { Op } = require('sequelize');
 
 
 const getAllCountries= async ()=>{
@@ -20,9 +21,11 @@ const getCountryById= async (id)=>{
 
 const getCountryByName= async (name)=> {
     
-    const countryFound = await Country.findOne({
+    const countryFound = await Country.findAll({
         where: {
-            name: name
+            name: {
+                [Op.iLike]: `%${name}%` //[Op.iLike] en lugar de [Op.like] para la búsqueda insensible a mayúsculas y minúsculas.
+            }
         }
     });
     if (!countryFound) {
