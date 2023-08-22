@@ -24,6 +24,7 @@ const DetailPais = ()=>{
      return(
         <div >
           <h2>Nombre: {countryDetail.name}</h2>
+          <h2>ID: {countryDetail.id}</h2>
           <h2>Continente: {countryDetail.continents}</h2>
           <h2>Capital: {countryDetail.capital}</h2>
           <h2>Subregion: {countryDetail.subregion}</h2>
