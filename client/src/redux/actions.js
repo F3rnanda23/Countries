@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE } from './action-types';
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE, CREATE_TOURISM_COUNTRY} from './action-types';
 import axios from 'axios';
 
 
@@ -51,3 +51,10 @@ export const updateCurrentOrderType = (orderType ) => {
   };
 };
  
+
+export const createTourismCountry = (tourismData) => {
+  return async function(dispatch){
+    const response = await axios.post( `http://localhost:3001/activities`, tourismData)    
+      return dispatch({type: CREATE_TOURISM_COUNTRY, payload: response.data})
+  }
+};

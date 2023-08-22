@@ -1,5 +1,5 @@
 
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE } from '../redux/action-types'
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE, CREATE_TOURISM_COUNTRY } from '../redux/action-types'
 
 const initialState = {
     //paises
@@ -57,6 +57,11 @@ const reducer = (state = initialState, action)=>{
                 currentOrderType: action.payload, // Actualiza el tipo de orden
             };
 
+        case CREATE_TOURISM_COUNTRY:  //actualizar paises ordenados
+        return {
+            ...state,
+            country: action.payload, // Actualiza el tipo de orden
+        };
         default:
             return {...state}
      }

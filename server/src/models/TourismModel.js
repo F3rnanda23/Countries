@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         validate: { min: 0 }
       },
       temporada: {
-        type: DataTypes.ENUM('Verano', 'Otoño', 'Invierno', 'Primavera'),
+        type: DataTypes.ENUM('verano', 'otoño', 'invierno', 'primavera'),
         allowNull: false
       }
       

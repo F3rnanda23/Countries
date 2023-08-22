@@ -16,14 +16,15 @@ const allTourismHandler= async (req, res)=>{
 const tourismCreateHandler=async (req, res)=>{
  
     try {
-        const { id, nombre, dificultad, duracion, temporada, countryId } = req.body;
+        const {  nombre, dificultad, duracion, temporada, countryId } = req.body;
         const tourismCreated= await tourismCreate(
-          id, 
+          
           nombre, 
           dificultad,
           duracion,
           temporada,
-          countryId)  // aqui le agregamos un pais al turismo
+          countryId
+          )  
 
         res.status(200).json(tourismCreated)
     } catch (error) {

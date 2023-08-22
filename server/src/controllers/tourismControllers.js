@@ -11,9 +11,9 @@ const getAllTourism= async ()=>{
    
 };
 
-const tourismCreate= async (id, nombre, dificultad,duracion, temporada, countryId )=>{
+const tourismCreate= async ( nombre, dificultad,duracion, temporada, countryId )=>{
     const newActivity = await Tourism.create({
-        id, 
+    
         nombre, 
         dificultad,
         duracion,

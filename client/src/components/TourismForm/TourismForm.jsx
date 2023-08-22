@@ -1,24 +1,30 @@
 import {useState} from "react";
+import { useDispatch } from 'react-redux';
 import Validation from "./validation";
+import { createTourismCountry } from '../../redux/actions';
 import style from './tourismForm.module.css'
 
 const TourismForm = () =>{
+
+    const dispatch = useDispatch();
+
     const [tourismData, setTourismData] = useState({
         nombre: '',
         dificultad:'',
         duracion: '',
         temporada:'',
-        country: ''
+        countryId: []
     });
-
+   
     const [errors, setErrors] = useState({
         nombre: '',
         dificultad:'',
         duracion: '',
         temporada:'',
-        country: ''
+        country: []
     });
 
+   
 
     const handlerChange= (event) =>{
         setTourismData({
@@ -36,6 +42,15 @@ const TourismForm = () =>{
 
     const handleSubmit = (event) =>{
         event.preventDefault();
+
+        const hasErrors = Object.values(errors).some(error => error !== '');
+
+        if (!hasErrors) {
+          dispatch(createTourismCountry(tourismData));
+        } else {
+          console.log('No se puede enviar la solicitud debido a errores de validación');
+        }
+    
     };
 
 
@@ -74,8 +89,8 @@ const TourismForm = () =>{
             <br/>
             <br/>
             
-            <label htmlFor="country" className={style.labelpassword}>Country: </label>
-            <input type="country"  name="country" value={tourismData.country} onChange={handlerChange} />
+            <label htmlFor="countryId" className={style.labelpassword}>Country: </label>
+            <input type="countryId"  name="countryId" value={tourismData.countryId} onChange={handlerChange} />
             {errors.country && <p>{errors.country }</p>}
             
 

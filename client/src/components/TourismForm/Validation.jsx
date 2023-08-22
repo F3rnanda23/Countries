@@ -38,10 +38,10 @@ const validation = (tourismData) =>{
         tourismData.temporada !== 'primavera'
     ) {
         errors.temporada = <span style={{ color: 'red' }}>Debe ser solo una temporada: Verano, Otoño, Invierno, Primavera</span>;
-    }
+    };
     //país
-    if(!tourismData.country){
-        errors.country= <span style={{ color: 'red' }}> Agregar uno o varios países para esta actividad</span>
+    if(!tourismData.countryId){
+        errors.countryId= <span style={{ color: 'red' }}> Agregar uno o varios países para esta actividad</span>
     };
    
 
