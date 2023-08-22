@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID } from './action-types';
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE } from './action-types';
 import axios from 'axios';
 
 
@@ -35,5 +35,19 @@ export const getCountryById = (idPais) => {
       const response = await axios( `http://localhost:3001/countries/${idPais}`)    
         return dispatch({type: GET_COUNTRY_BY_ID, payload: response.data})
     }
+};
+
+export const updateCountryOrder = (orderOfCountries ) => {
+  return {
+    type: UPDATE_SORTED_COUNTRIES,
+    payload: orderOfCountries,
+  };
+};
+
+export const updateCurrentOrderType = (orderType ) => {
+  return {
+    type: UPDATE_CURRENT_ORDER_TYPE,
+    payload: orderType,
+  };
 };
  

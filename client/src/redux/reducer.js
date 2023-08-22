@@ -1,11 +1,17 @@
 
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID } from '../redux/action-types'
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE } from '../redux/action-types'
 
 const initialState = {
+    //paises
     country: [],
     countryDetail: {},
+    //paginado
     currentPage: 1,
     countriesPerPage: 10,
+    //botones orden y filtrado
+    currentOrderType: null,
+
+
 
     
  };
@@ -37,6 +43,18 @@ const reducer = (state = initialState, action)=>{
             return {
                 ...state,
                 countryDetail: action.payload,
+            };
+
+        case UPDATE_SORTED_COUNTRIES:  //actualizar paises ordenados
+            return {
+                ...state,
+                country: action.payload,
+            };
+
+        case UPDATE_CURRENT_ORDER_TYPE:  //actualizar paises ordenados
+            return {
+                ...state,
+                currentOrderType: action.payload, // Actualiza el tipo de orden
             };
 
         default:

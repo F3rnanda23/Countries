@@ -2,6 +2,7 @@
 import CardsPaises from "../cards/CardsPaises";
 import Navbar from "../navbar/Nabvar";
 import Pagination from "../pagination/Patigation";
+import ButtonsToOrder from "../buttons/ButtonToOrder";
 
 
 const Home = () =>{
@@ -18,6 +19,10 @@ const Home = () =>{
              <h2> COUNTRIES </h2>
             <div>
                 <Navbar />
+            </div>
+
+            <div>
+                <ButtonsToOrder />
             </div>
 
             <div>

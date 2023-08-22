@@ -11,14 +11,16 @@ const CardsPaises = () =>{
     const countries = useSelector(state => state.country);
     const currentPage = useSelector((state) => state.currentPage);// página actual que se esta mostrando
     const countriesPerPage = useSelector((state) => state.countriesPerPage); // cuantos paises se deben mostrar por pagina
-    
+    const currentOrderType = useSelector(state => state.currentOrderType);
+
         
     const dispatch = useDispatch();
 
     useEffect(() => {
-       
-            dispatch(getAllCountries());
-         
+      
+      if(!currentOrderType ) {
+        dispatch(getAllCountries());
+      }
       }, [dispatch]);
                           
     const startIndex = (currentPage - 1) * countriesPerPage;// 0*50 = 0 ( pais indice 0)  // 1*50=50
