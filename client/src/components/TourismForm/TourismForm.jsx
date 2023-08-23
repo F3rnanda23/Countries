@@ -1,10 +1,13 @@
 import {useState} from "react";
 import { useDispatch } from 'react-redux';
-import Validation from "./validation";
 import { createTourismCountry } from '../../redux/actions';
+import Validation from "./validation";
+import TourismModal from "./TourismModal";
 import style from './tourismForm.module.css'
 
 const TourismForm = () =>{
+
+    const [modal, setModal] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -47,6 +50,15 @@ const TourismForm = () =>{
 
         if (!hasErrors) {
           dispatch(createTourismCountry(tourismData));
+          setModal(true);// Si se establece en true, el modal se mostrará;
+          setTourismData({ // Limpia los inputs
+            nombre: '',
+            dificultad: '',
+            duracion: '',
+            temporada: '',
+            countryId: []
+          });
+    
         } else {
           console.log('No se puede enviar la solicitud debido a errores de validación');
         }
@@ -97,6 +109,9 @@ const TourismForm = () =>{
             <br/>
             <br/>
             <button className={style.btn}>Crear actividad</button>
+
+        {/* //componente modal */}
+            <TourismModal isOpen={modal} onClose={() => setModal(false)} />
         </form>
     );
 
