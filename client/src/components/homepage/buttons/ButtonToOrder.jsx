@@ -1,5 +1,5 @@
 import {  useSelector, useDispatch } from 'react-redux';
-import React, {  useEffect } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { updateCountryOrder, updateCurrentOrderType } from '../../../redux/actions';
 
  //const orden
@@ -15,21 +15,26 @@ const ButtonsToOrder = ()=>{
     const currentOrderType = useSelector(state => state.currentOrderType);
 
     const dispatch = useDispatch();
-
-   
+//                                                                                 valor por defecto ya que partía null
+    const [selectedOrder, setSelectedOrder] = useState(currentOrderType ||  ALPHABETIC_ASC);  // estado para el selector de ordenamiento
 
     useEffect(() => {
-        console.log(currentOrderType);
-        if (currentOrderType == ALPHABETIC_ASC) {
+        setSelectedOrder(currentOrderType);
+    }, [currentOrderType]);
+
+    
+    useEffect(() => {
+    
+        if (selectedOrder  == ALPHABETIC_ASC) {
             onSearchAlfabeticAscend();
-        } else if (currentOrderType === ALPHABETIC_DESC) {
+        } else if (selectedOrder  === ALPHABETIC_DESC) {
             onSearchAlfabeticDescend();
-        } else if (currentOrderType === POPULATION_ASC) {
+        } else if (selectedOrder  === POPULATION_ASC) {
             onSearchPopulatAscend();
-        } else if (currentOrderType === POPULATION_DESC) {
+        } else if (selectedOrder  === POPULATION_DESC) {
             onSearchPopulatDescend();
         }
-    }, []);
+    }, [selectedOrder]);
 
 
   
@@ -40,8 +45,8 @@ const ButtonsToOrder = ()=>{
         orderOfCountries.sort((a, b) => a.name.localeCompare(b.name)); // el localecompare ordena alfabeticamente 2 objs (a.name y b.name) y sort va recorriendo el array
         dispatch(updateCountryOrder(orderOfCountries));// para ordenar alfabeticamnte
         dispatch(updateCurrentOrderType(ALPHABETIC_ASC));// mantener orden al desmontar
-        return orderOfCountries;
-    }
+      //  return orderOfCountries;
+    };
 
     const onSearchAlfabeticDescend = ()=>{
         const orderOfCountries = [...countryOrder];
@@ -49,7 +54,7 @@ const ButtonsToOrder = ()=>{
         orderOfCountries.sort((a, b) => b.name.localeCompare(a.name));
         dispatch(updateCountryOrder(orderOfCountries));
         dispatch(updateCurrentOrderType(ALPHABETIC_DESC));
-    }
+    };
 
     const onSearchPopulatAscend = () => {
         const orderOfCountries = [...countryOrder];
@@ -68,21 +73,29 @@ const ButtonsToOrder = ()=>{
         dispatch(updateCurrentOrderType(POPULATION_DESC));
     };
 
+    const handleOrderChange = (event) => {
+        setSelectedOrder(event.target.value);
+    };
+
 
     
 
     return (
         <div>
-            <div>
-                <h3>Orden Alfabético: </h3>   
-                <button onClick={onSearchAlfabeticAscend}>Ascendente</button> 
-                <button onClick={onSearchAlfabeticDescend}>Descendente</button> 
+           <div>
+                <h3>Orden Alfabético: </h3>
+                <select  id="orderAlphabetic" name="orderAlphabetic" value={selectedOrder} onChange={handleOrderChange}>
+                    <option value={ALPHABETIC_ASC}>Ascendente</option>
+                    <option value={ALPHABETIC_DESC}>Descendente</option>
+                </select>
             </div>
 
             <div>
-                <h3>Orden por cantidad de población: </h3>   
-                <button onClick={onSearchPopulatAscend}>Ascendente</button> 
-                <button onClick={onSearchPopulatDescend}>Descendente</button> 
+                <h3>Orden por cantidad de población: </h3>
+                <select id="orderPopulation" name="orderPopulation" value={selectedOrder} onChange={handleOrderChange}>
+                    <option value={POPULATION_ASC}>Ascendente</option>
+                    <option value={POPULATION_DESC}>Descendente</option>
+                </select>
             </div>
         
         </div>
@@ -95,10 +108,16 @@ const ButtonsToOrder = ()=>{
 export default ButtonsToOrder;
 
 
-
 // import {  useSelector, useDispatch } from 'react-redux';
 // import React, {  useEffect } from 'react';
-// import { updateCountryOrder } from '../../../redux/actions';
+// import { updateCountryOrder, updateCurrentOrderType } from '../../../redux/actions';
+
+//  //const orden
+//     const ALPHABETIC_ASC = 'ALPHABETIC_ASC';
+//     const ALPHABETIC_DESC = 'ALPHABETIC_DESC';
+//     const POPULATION_ASC = 'POPULATION_ASC';
+//     const POPULATION_DESC = 'POPULATION_DESC';
+
 
 // const ButtonsToOrder = ()=>{
 
@@ -107,52 +126,56 @@ export default ButtonsToOrder;
 
 //     const dispatch = useDispatch();
 
-  
+   
 
 //     useEffect(() => {
-//         if (currentOrderType === 'ascend') {
-//             onSearchAlfabeticAscend()
-//             onSearchPopulatAscend()
-//         } else if (currentOrderType === 'descend') {
-//             onSearchAlfabeticDescend()
-//             onSearchPopulatDescend()
+    
+//         if (currentOrderType == ALPHABETIC_ASC) {
+//             onSearchAlfabeticAscend();
+//         } else if (currentOrderType === ALPHABETIC_DESC) {
+//             onSearchAlfabeticDescend();
+//         } else if (currentOrderType === POPULATION_ASC) {
+//             onSearchPopulatAscend();
+//         } else if (currentOrderType === POPULATION_DESC) {
+//             onSearchPopulatDescend();
 //         }
-        
-//     }, [currentOrderType]);
+//     }, []);
 
 
+  
 
 //     const onSearchAlfabeticAscend = ()=>{
-//         //setCurrentAlphabeticOrder('ascend');
-
 //         const orderOfCountries = [...countryOrder]; //Esta nueva copia es independiente del estado original,
+
 //         orderOfCountries.sort((a, b) => a.name.localeCompare(b.name)); // el localecompare ordena alfabeticamente 2 objs (a.name y b.name) y sort va recorriendo el array
-//         dispatch(updateCountryOrder(orderOfCountries));
-//     }
+//         dispatch(updateCountryOrder(orderOfCountries));// para ordenar alfabeticamnte
+//         dispatch(updateCurrentOrderType(ALPHABETIC_ASC));// mantener orden al desmontar
+//       //  return orderOfCountries;
+//     };
 
 //     const onSearchAlfabeticDescend = ()=>{
-//         //setCurrentAlphabeticOrder('descend');
-
 //         const orderOfCountries = [...countryOrder];
+
 //         orderOfCountries.sort((a, b) => b.name.localeCompare(a.name));
 //         dispatch(updateCountryOrder(orderOfCountries));
-//     }
+//         dispatch(updateCurrentOrderType(ALPHABETIC_DESC));
+//     };
 
 //     const onSearchPopulatAscend = () => {
-//       // setCurrentPopulationOrder('ascend');
-
 //         const orderOfCountries = [...countryOrder];
+
 //         orderOfCountries.sort((a, b) => a.population - b.population);
 //         dispatch(updateCountryOrder(orderOfCountries));
+//         dispatch(updateCurrentOrderType(POPULATION_ASC));
 //     };
 
 
 //     const onSearchPopulatDescend = () => {
-//         //setCurrentPopulationOrder('descend');
-
 //         const orderOfCountries = [...countryOrder];
+
 //         orderOfCountries.sort((a, b) => b.population - a.population);
 //         dispatch(updateCountryOrder(orderOfCountries));
+//         dispatch(updateCurrentOrderType(POPULATION_DESC));
 //     };
 
 
@@ -180,6 +203,3 @@ export default ButtonsToOrder;
 // };
 
 // export default ButtonsToOrder;
-
-
-

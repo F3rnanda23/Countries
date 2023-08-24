@@ -9,6 +9,7 @@ import { getAllCountries } from '../../../redux/actions';
 const CardsPaises = () =>{
 
     const countries = useSelector(state => state.country);
+    const countriesFilter = useSelector(state => state.countriesFilter);
     const currentPage = useSelector((state) => state.currentPage);// página actual que se esta mostrando
     const countriesPerPage = useSelector((state) => state.countriesPerPage); // cuantos paises se deben mostrar por pagina
     const currentOrderType = useSelector(state => state.currentOrderType);
@@ -25,7 +26,8 @@ const CardsPaises = () =>{
                           
     const startIndex = (currentPage - 1) * countriesPerPage;// 0*50 = 0 ( pais indice 0)  // 1*50=50
     const endIndex = startIndex + countriesPerPage;   //0 + 50 // 50 + 50
-    const countriesToDisplay = countries.slice(startIndex, endIndex); //desde posicion  0 al 49 //  desde 50 al 99
+
+    const countriesToDisplay = countriesFilter.slice(startIndex, endIndex); //desde posicion  0 al 49 //  desde 50 al 99
 
 //Normalmente, las páginas se numeran desde 1 en la interfaz de usuario, pero en muchos casos, los índices de las listas en programación comienzan desde 0.
 //La variable currentPage representa la página actual que se está mostrando, y countriesPerPage indica cuántos países se deben mostrar en cada página.    

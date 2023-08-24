@@ -1,16 +1,18 @@
 
 import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE, MODAL_TOURISM,
-    SET_TOURISM_ERROR, RESET_TOURISM_ERROR } from '../redux/action-types'
+    SET_TOURISM_ERROR, RESET_TOURISM_ERROR, UPDATE_FILTERED_COUNTRIES, UPDATE_CURRENT_FILTER_TYPE } from '../redux/action-types'
 
 const initialState = {
     //paises
     country: [],
+    countriesFilter: [],
     countryDetail: {},
     //paginado
     currentPage: 1,
     countriesPerPage: 10,
     //botones orden y filtrado
     currentOrderType: null,
+    currentFilteredType: null,
     //estado modal
     modalState: false,
     
@@ -24,7 +26,8 @@ const reducer = (state = initialState, action)=>{
         case GET_ALL_COUNTRIES:
             return {
                 ...state,
-                country: action.payload
+                country: action.payload,
+                countriesFilter: action.payload
             };
         case GET_COUNTRY_DETAIL:
             return {
@@ -39,7 +42,7 @@ const reducer = (state = initialState, action)=>{
         case GET_COUNTRY_BY_NAME:
             return {
                 ...state,
-                country: action.payload,
+                countriesFilter: action.payload,
             };        
                     
         case GET_COUNTRY_BY_ID:
@@ -51,7 +54,7 @@ const reducer = (state = initialState, action)=>{
         case UPDATE_SORTED_COUNTRIES:  //actualizar paises ordenados
             return {
                 ...state,
-                country: action.payload,
+                countriesFilter: action.payload,
             };
 
         case UPDATE_CURRENT_ORDER_TYPE:  //actualizar paises ordenados
@@ -73,12 +76,24 @@ const reducer = (state = initialState, action)=>{
                 ...state,
                 tourismError: true,
         };
+
         case RESET_TOURISM_ERROR:
             return {
                 ...state,
                 tourismError: false,
         };
 
+        case UPDATE_FILTERED_COUNTRIES:
+            return {
+                ...state,
+                countriesFilter: action.payload,
+        };
+
+        case UPDATE_CURRENT_FILTER_TYPE:  //actualizar paises ordenados
+            return {
+                ...state,
+                currentFilteredType: action.payload, // Actualiza el tipo de orden
+            };
 
      
         default:

@@ -7,7 +7,7 @@ import { changePage } from '../../../redux/actions';
 const Pagination = () => {
   const currentPage = useSelector((state) => state.currentPage);
   const countriesPerPage = useSelector((state) => state.countriesPerPage);
-  const totalCountries = useSelector((state) => state.country.length);
+  const totalCountries = useSelector((state) => state.countriesFilter.length);
 
   const totalPages = Math.ceil(totalCountries / countriesPerPage);//redondear un número hacia arriba al entero más cercano o igual
   //La división totalCountries / countriesPerPage te dará el número total de páginas requeridas para mostrar todos los países. 
