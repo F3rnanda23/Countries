@@ -1,4 +1,4 @@
- const { getAllTourism, tourismCreate }= require('../controllers/tourismControllers');
+ const { getAllTourism, tourismCreate, getTourism }= require('../controllers/tourismControllers');
 
 
 const allTourismHandler= async (req, res)=>{
@@ -17,16 +17,23 @@ const tourismCreateHandler=async (req, res)=>{
  
     try {
         const {  nombre, dificultad, duracion, temporada, countryId } = req.body;
-        const tourismCreated= await tourismCreate(
-          
+        const getTourismNotRepeated= await getTourism(
           nombre, 
           dificultad,
           duracion,
-          temporada,
-          countryId
-          )  
+          temporada
+        );
+        console.log(getTourismNotRepeated, ' aqui1')
+        if (!getTourismNotRepeated){
+            
+            const  tourismCreated =  tourismCreate( nombre, dificultad, duracion, temporada, countryId )
+            res.status(200).json(tourismCreated)
+        }
+        else {
+            res.status(404).json({error:"Este turismo ya está creado"})
+        }
+        
 
-        res.status(200).json(tourismCreated)
     } catch (error) {
         res.status(404).send(error.message)
     }

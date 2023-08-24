@@ -1,4 +1,5 @@
-import React from "react";
+import React, {  useEffect } from 'react';
+import Modal from 'react-modal';
 import { Routes, Route  } from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/homepage/home/Home";
@@ -10,7 +11,9 @@ import TourismForm from "./components/TourismForm/TourismForm";
 
 function App() {
  
-
+  useEffect(() => {
+    Modal.setAppElement('#root'); // Aquí '#root' debe ser el ID del elemento raíz de tu aplicación
+  }, []);
 
 
   return (

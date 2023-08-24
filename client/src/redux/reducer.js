@@ -1,5 +1,6 @@
 
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE, CREATE_TOURISM_COUNTRY } from '../redux/action-types'
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE, MODAL_TOURISM,
+    SET_TOURISM_ERROR, RESET_TOURISM_ERROR } from '../redux/action-types'
 
 const initialState = {
     //paises
@@ -10,9 +11,11 @@ const initialState = {
     countriesPerPage: 10,
     //botones orden y filtrado
     currentOrderType: null,
-
-
-
+    //estado modal
+    modalState: false,
+    
+    // estado de  turismo repetido
+    tourismError: false,
     
  };
 
@@ -56,15 +59,32 @@ const reducer = (state = initialState, action)=>{
                 ...state,
                 currentOrderType: action.payload, // Actualiza el tipo de orden
             };
+            
 
-        case CREATE_TOURISM_COUNTRY:  //actualizar paises ordenados
-        return {
-            ...state,
-            country: action.payload, // Actualiza el tipo de orden
+        case MODAL_TOURISM:  //actualizar paises ordenados
+       
+            return {
+                ...state,
+                modalState: action.payload,
+        };   
+        
+        case SET_TOURISM_ERROR:
+            return {
+                ...state,
+                tourismError: true,
         };
+        case RESET_TOURISM_ERROR:
+            return {
+                ...state,
+                tourismError: false,
+        };
+
+
+     
         default:
             return {...state}
      }
 };
 
 export default reducer;
+

@@ -14,19 +14,19 @@ const validation = (tourismData) =>{
         errors.nombre=<span style={{ color: 'red' }}> Máximo 35 caracteres</span>
     };
     //dificultad
-    if(!tourismData.dificultad){
-        errors.dificultad= <span style={{ color: 'red' }}> Ingresar un nivel de dificultad ( 1: bajo, 2: liviano, 3: intermedio, 4: difícil, 5: alto) </span>
+    if (!tourismData.dificultad) {
+        errors.dificultad = <span style={{ color: 'red' }}>Ingresar un nivel de dificultad (1: bajo, 2: liviano, 3: intermedio, 4: difícil, 5: alto)</span>;
+    } else if (!/^[1-5]$/.test(tourismData.dificultad)) {
+        errors.dificultad = <span style={{ color: 'red' }}>Debe ser un número entre 1 y 5</span>;
     }
-    else if(tourismData.dificultad > 5 || tourismData.dificultad < 1 ){
-        errors.dificultad=<span style={{ color: 'red' }}> No puede ser menor a 1, ni mayor a 5</span>
-    };
     //duración
-    if(!tourismData.duracion){
-        errors.duracion= <span style={{ color: 'red' }}> Ingresar la duración de la actividad en minutos</span>
+    if (!tourismData.duracion) {
+        errors.duracion = <span style={{ color: 'red' }}>Ingresar la duración de la actividad en minutos</span>;
+    } else if (isNaN(tourismData.duracion)) {
+        errors.duracion = <span style={{ color: 'red' }}>Debe ser un número</span>;
+    } else if (tourismData.duracion >= 300) {
+        errors.duracion = <span style={{ color: 'red' }}>No puede durar más de 5 horas (300 minutos)</span>;
     }
-    else if(tourismData.duracion >= 300 ){
-        errors.duracion=<span style={{ color: 'red' }}> No puede durar mas de 5 horas ( 300 minutos) </span>
-    };
     //termporada
     if(!tourismData.temporada){
         errors.temporada= <span style={{ color: 'red' }}> Debe ingresar una Temporada</span>

@@ -23,9 +23,23 @@ const tourismCreate= async ( nombre, dificultad,duracion, temporada, countryId )
 
      return newActivity
 
-}
+};
+
+const getTourism= async ( nombre, dificultad,duracion, temporada )=>{
+    return await Tourism.findOne ({
+        where: {
+            nombre: nombre,
+            dificultad: dificultad,
+            duracion: duracion,
+            temporada: temporada
+        }
+        
+     })
+};
+
 
 module.exports= {
     getAllTourism,
-    tourismCreate
+    tourismCreate,
+    getTourism
 }

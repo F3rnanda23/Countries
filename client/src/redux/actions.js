@@ -1,4 +1,5 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES, UPDATE_CURRENT_ORDER_TYPE, CREATE_TOURISM_COUNTRY} from './action-types';
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES,
+   UPDATE_CURRENT_ORDER_TYPE, MODAL_TOURISM, SET_TOURISM_ERROR , RESET_TOURISM_ERROR} from './action-types';
 import axios from 'axios';
 
 
@@ -53,8 +54,18 @@ export const updateCurrentOrderType = (orderType ) => {
  
 
 export const createTourismCountry = (tourismData) => {
-  return async function(dispatch){
-    const response = await axios.post( `http://localhost:3001/activities`, tourismData)    
-      return dispatch({type: CREATE_TOURISM_COUNTRY, payload: response.data})
+  return async function(dispatch) {
+    try {
+      const response = await axios.post(`http://localhost:3001/activities`, tourismData);
+      dispatch({type: MODAL_TOURISM, payload: true})
+      dispatch({type: RESET_TOURISM_ERROR});
+      
+    } catch (error) {
+     
+      console.log("Error en la solicitud:", error);
+      dispatch({type: MODAL_TOURISM, payload: false})
+      dispatch({type: SET_TOURISM_ERROR});
+
+    }
   }
 };
