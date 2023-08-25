@@ -20,15 +20,29 @@ const Pagination = () => {
 
   return (
     <div>
+      <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+      >
+           &laquo; { 'prev'}
+      </button>
+
       {Array.from({ length: totalPages }, (_, index) => ( //Crea una lista (array) de páginas  y te dice en qué número de página estás.
         <button
           key={index}
           onClick={() => handlePageChange(index + 1)}
-          disabled={currentPage === index + 1}
+          disabled={currentPage === index + 1 ? 'active' : ''}
         >
           {index + 1}
         </button>
       ))}
+
+      <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+      >
+          &raquo; {'next'}
+      </button>
     </div>
   );
 };

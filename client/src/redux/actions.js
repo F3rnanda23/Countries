@@ -1,6 +1,7 @@
 import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, CHANGE_PAGE, GET_COUNTRY_BY_NAME, GET_COUNTRY_BY_ID, UPDATE_SORTED_COUNTRIES,
-   UPDATE_CURRENT_ORDER_TYPE, MODAL_TOURISM, SET_TOURISM_ERROR , RESET_TOURISM_ERROR, UPDATE_FILTERED_COUNTRIES,
-    UPDATE_CURRENT_FILTER_TYPE} from './action-types';
+   UPDATE_CURRENT_ORDER_TYPE, MODAL_TOURISM, SET_TOURISM_ERROR , RESET_TOURISM_ERROR, UPDATE_CURRENT_FILTER_TYPE, 
+   GET_TOURISM_SELECTOR} from './action-types';
+
 import axios from 'axios';
 
 
@@ -71,16 +72,16 @@ export const createTourismCountry = (tourismData) => {
   }
 };
 
-export const updateCountryFiltered = (filteredCountries ) => {
-  return {
-    type: UPDATE_FILTERED_COUNTRIES,
-    payload: filteredCountries,
-  };
-};
-
 export const updateCurrentFilterType = (orderType ) => {
   return {
     type: UPDATE_CURRENT_FILTER_TYPE,
     payload: orderType,
   };
+};
+
+export const getAllTourism = () => {
+  return async function(dispatch){
+      const response = await axios('http://localhost:3001/activities')    
+        return dispatch({type: GET_TOURISM_SELECTOR, payload: response.data})
+   }
 };
