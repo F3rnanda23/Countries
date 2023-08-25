@@ -19,7 +19,7 @@ const DetailPais = ()=>{
      
     }, [dispatch]);
 
-
+console.log(countryDetail, 'aqui23')
 
      return(
         <div >
@@ -31,6 +31,17 @@ const DetailPais = ()=>{
           <h2>Area: {countryDetail.area} km²</h2>
           <h2>Población: {countryDetail.population} personas</h2>
           <img src={countryDetail.flags} alt={countryDetail?.name}/>
+          <br/>
+          <br/>
+          {countryDetail.Tourisms &&
+            countryDetail.Tourisms.map((activity) => (
+              <div key={activity.id}>
+                <p>name: {activity.nombre}</p>
+                <p>difficulty: {activity.dificultad}</p>
+                <p>duracion: {activity.duracion}</p>
+                <p>season: {activity.temporada}</p>
+              </div>
+            ))}
             
         </div>
     );

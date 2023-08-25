@@ -26,9 +26,6 @@ const Home = () =>{
                 <ButtonsToOrder />
             </div>
 
-            <div>
-                <ButtonsToFilter />
-            </div>
 
             <div>
                 <CardsPaises />

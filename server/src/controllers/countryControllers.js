@@ -1,11 +1,16 @@
 
-const { Country }= require('../db')
+const { Country, Tourism }= require('../db')
 const { Op } = require('sequelize');
 
 
 const getAllCountries= async ()=>{
 
-     const allCountry = await Country.findAll();
+     const allCountry = await Country.findAll({
+        include: [{
+            model: Tourism,
+           
+            attributes: ['id', 'nombre', 'dificultad', 'duracion', 'temporada']
+        }]});
      return allCountry;
         
 
@@ -13,10 +18,14 @@ const getAllCountries= async ()=>{
 
 const getCountryById= async (id)=>{
 
-    const countryById = await Country.findByPk(id);
+    const countryById = await Country.findByPk(id, {
+        include: [{
+          model: Tourism,
+          attributes: ['id', 'nombre', 'dificultad', 'duracion', 'temporada']
+        }]
+      });
     return countryById;
 
-    
 };
 
 const getCountryByName= async (name)=> {
@@ -31,8 +40,10 @@ const getCountryByName= async (name)=> {
     if (!countryFound) {
         return { error: 'No existe país con ese nombre' };
     }
-    
+    console.log(countryFound, 'aqui')
+
     return countryFound;
+    
 };
 
 

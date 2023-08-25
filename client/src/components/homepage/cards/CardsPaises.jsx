@@ -13,13 +13,14 @@ const CardsPaises = () =>{
     const currentPage = useSelector((state) => state.currentPage);// página actual que se esta mostrando
     const countriesPerPage = useSelector((state) => state.countriesPerPage); // cuantos paises se deben mostrar por pagina
     const currentOrderType = useSelector(state => state.currentOrderType);
+    const currentFilteredType = useSelector(state => state.currentFilteredType);
 
         
     const dispatch = useDispatch();
 
     useEffect(() => {
       
-      if(!currentOrderType ) {
+      if(!currentOrderType && !currentFilteredType) {
         dispatch(getAllCountries());
       }
       }, [dispatch]);
