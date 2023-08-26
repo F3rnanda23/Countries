@@ -1,6 +1,6 @@
 import {useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { createTourismCountry } from '../../redux/actions';
+import { createTourismCountry, getAllCountries } from '../../redux/actions';
 import Validation from "./validation";
 import TourismModal from "./TourismModal";
 import style from './tourismForm.module.css'
@@ -10,6 +10,7 @@ const TourismForm = () =>{
 
     const modalOfState = useSelector(state => state.modalState);
     const tourismError = useSelector(state => state.tourismError);
+    const countries = useSelector(state => state.country);
     
    
     
@@ -43,6 +44,7 @@ const TourismForm = () =>{
             dispatch({ type: MODAL_TOURISM, payload: false }); // Cerrar el modal si hay error
             setHasInputChanges(true);
         }
+        dispatch(getAllCountries())
     }, [ tourismData, dispatch, tourismError]);
 
    
@@ -95,6 +97,14 @@ const TourismForm = () =>{
     
     };
 
+    const onClickTourism = (event)=>{
+        const countryName =event.target.value;
+       
+
+        if(countryName){
+            dispatch (getAllCountries())
+        }
+    };
 
 
     return(
@@ -128,11 +138,19 @@ const TourismForm = () =>{
 
             <br/>
             <br/>
-            
-            <label htmlFor="countryId" className={style.labelpassword}>Country: </label>
+
+           
+            {/* <label htmlFor="countryId" className={style.labelpassword}>Country: </label>
             <input type="countryId"  name="countryId"  id="countryId" value={tourismData.countryId} onChange={handlerChange} />
-            {errors.country && <p>{errors.country }</p>}
-            
+            {errors.country && <p>{errors.country }</p>} */}
+            <h3>Country: </h3>   
+                <select   value={countries.id} onChange={onClickTourism}>
+                    {countries && countries.map((country) =>( <option key ={country.id} value={country.id} > 
+                    {country.name} 
+                    </option>
+                    ))}
+                
+                </select>
 
              <br/>
              <br/>

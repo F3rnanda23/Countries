@@ -18,15 +18,15 @@ const ALL = 'ALL';
 
 const ButtonsToOrder = ()=>{
     const countries = useSelector(state => state.country);
-    const countriesOrder = useSelector(state => state.currentOrderType);
-    const currentFilterType = useSelector(state => state.currentFilteredType);
-    const tourism = useSelector(state => state.tourism);// para tourism
+    const countriesOrder = useSelector(state => state.currentOrderType); //estado para mantener el orden 
+    const currentFilterType = useSelector(state => state.currentFilteredType);// estado para mantener el filtrado
+    const tourism = useSelector(state => state.tourism);// estado para los tourism
 
     const dispatch = useDispatch();
 
-    const [selectedOrder, setSelectedOrder] = useState(countriesOrder); 
-    const [selectedContinent, setSelectedContinent] = useState(currentFilterType); 
-    const [selectedTourism, setSelectedTourism] = useState(''); 
+    const [selectedOrder, setSelectedOrder] = useState(countriesOrder); //orden y filtrado
+    const [selectedContinent, setSelectedContinent] = useState(currentFilterType);  // continentes
+    const [selectedTourism, setSelectedTourism] = useState('');  //turismo
 
     useEffect(() => {
         if (countriesOrder != ""){
