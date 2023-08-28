@@ -25,6 +25,8 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
 
 
 
+
+
     const handlerChange= (event) =>{
         setUserData({
             ...userData,
@@ -52,47 +54,58 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
         setIsSubmitDisabled(hasErrors);
     }, [errors, userData]); // useeff esta pendiente a si estos estados cambian
 
-    const handleSubmit = (event) =>{
+
+
+    const handleSubmit = (event, ) =>{
          event.preventDefault();
           
         
-
         if (!isSubmitDisabled) {
             navigate("/home");
-        }     
+        }   
+    
     };   
 
-   
 
+
+  
     return(
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="nombre" >Nombre: </label>
-            <input type="nombre" name="nombre" id="nombre" value={userData.nombre} onChange={handlerChange} />
-            {errors.nombre && <p>{errors.nombre }</p>}
+        <body className={style.login}>
+            <div className={style.formContainer}>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="nombre" className={style.textoEstilizado}>Nombre: </label>
+                <input type="nombre" name="nombre" id="nombre" value={userData.nombre} onChange={handlerChange} className={`${style.nameLabel} ${style.inputsForm}`}/>
+                {errors.nombre && <p>{errors.nombre }</p>}
 
-            <br/>
-            <br/>
-            
-            <label htmlFor="email" >Email: </label>
-            <input type="email" name="email" id="email" value={userData.email} onChange={handlerChange} />
-            {errors.email && <p>{errors.email }</p>}
+                <br/>
+                <br/>
+                
+                <label htmlFor="email" className={style.textoEstilizado}>Email: </label>
+                <input type="email" name="email" id="email" value={userData.email} onChange={handlerChange} className={`${style.emailLabel} ${style.inputsForm}`}/>
+                {errors.email && <p>{errors.email }</p>}
 
-            <br/>
-            <br/>
-            
-            <label htmlFor="password" >Password: </label>
-            <input type="password"  name="password" id="password" value={userData.password} onChange={handlerChange} />
-            {errors.password && <p>{errors.password }</p>}
+                <br/>
+                <br/>
+                
+                <label htmlFor="password"className={style.textoEstilizado} >Password: </label>
+                <input type="password"  name="password" id="password" value={userData.password} onChange={handlerChange} className={style.inputsForm}/>
+                {errors.password && <p>{errors.password }</p>}
 
-            <br/>
-            <br/>
-
-            <button className={style.btn} disabled={isSubmitDisabled} onClick={handleSubmit}> 
-              Ir a home
-            </button>
+                <br/>
+                <br/>
 
         
-        </form>
+            
+                <button className={`${style.btn} ${isSubmitDisabled ? style.disabledBtn : ''}`}   disabled={isSubmitDisabled} onClick={handleSubmit}> 
+                Ir a home
+                </button>
+            </form>
+
+        </div>
+            
+        </body>
+        
+        
     )
 
 };

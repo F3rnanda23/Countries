@@ -1,0 +1,105 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.login  {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGxlNm94NjVkcDZ2b3A2eTZkdmQ3ZWxvM3ZreGZtYWNnaWE5MG5vcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2SqbNPPB4pGLFlFm/giphy.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+   
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(9, 94, 65, 0.5); /* Usamos un valor de opacidad (0.8) para el color de fondo */
+    position: absolute; /* Posición absoluta para superponerlo en el body */
+    width: 60%; /* Opcional, ajusta el ancho según tus necesidades */
+    height: 80%;
+    border: 2px solid #100738; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+   
+}
+
+
+.formContainer label {
+    text-align: right; /* Alineación del texto a la derecha */
+    align-items: center;
+    justify-content: center;
+}
+
+
+.formContainer input {
+    background: linear-gradient(45deg, #fdfcfc, #767677);
+    gap: 10px; /* Espacio entre los elementos */
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    width: 120%;
+    
+}
+
+.formContainer input:hover {
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+}
+  
+.formContainer input:focus {
+    outline: none;
+ }
+
+
+
+.textoEstilizado {
+    padding: 10px;
+    font-size: 24px; /* Aumenta el tamaño de fuente */
+    color: #85d10a;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Cambia la fuente a una más estilizada */
+    width: 100%;
+    font-weight: bold; /* Hace que las letras sean más gruesas */
+    -webkit-text-stroke: 2px #021d0d; /* Borde alrededor de las letras */
+   
+}
+
+
+.btn {
+    background: linear-gradient(45deg, #39df63, #291169);
+    border: none;
+    color: rgb(17, 17, 16);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+   
+}
+  
+.btn:hover {
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+}
+  
+.btn:focus {
+    outline: none;
+}
+
+.disabledBtn {
+    opacity: 0.6; /* Cambia la opacidad según tus preferencias */
+    cursor: not-allowed;
+ }
+
+
