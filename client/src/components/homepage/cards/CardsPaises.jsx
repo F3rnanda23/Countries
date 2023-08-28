@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CardPais from '../card/CardPais';
 import { getAllCountries } from '../../../redux/actions';
+import  style from './cardsPaises.module.css';
 
 
 
@@ -38,7 +39,7 @@ const CardsPaises = () =>{
 
     return(
 
-        <div>
+        <div className={style.containerAllCard}>
 
         {countriesToDisplay .map(country => (
           <CardPais key={country.id} country={country} />

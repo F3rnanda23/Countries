@@ -1,8 +1,18 @@
 .containerCard{
+ background-color: rgb(15, 151, 22);
+}
+
+.Card {
+  flex: 0 0 calc(20% - 20px); /* Calcula el ancho de cada tarjeta para 5 columnas */
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   margin: 10px;
-  background-color: #fff;
+  background-color: #cdeeea;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Card img {
+  max-width: 100%;
+  border-radius: 10px;
 }
