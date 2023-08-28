@@ -1,6 +1,7 @@
 import {  useSelector, useDispatch } from 'react-redux';
 import React, {  useEffect, useState } from 'react';
 import { updateCountryOrder, updateCurrentOrderType, getAllCountries, updateCurrentFilterType, getAllTourism } from '../../../redux/actions';
+import style from './buttonsToOrderFilter.module.css'
 
  //const orden
 const ALPHABETIC_ASC = 'ALPHABETIC_ASC';
@@ -213,8 +214,8 @@ const ButtonsToOrder = ()=>{
     };
     
     return (
-        <div>
-           <div>
+        <div className={style.containerSelectores}>
+           <div className={style.alfabeto}>
                 <h3>Orden Alfabético: </h3>
                 <select  id="orderAlphabetic" name="orderAlphabetic" value={selectedOrder} onChange={onClickOrder}>
                     <option value={ALPHABETIC_ASC}>Ascendente</option>
@@ -222,14 +223,15 @@ const ButtonsToOrder = ()=>{
                 </select>
             </div>
 
-            <div>
+            <div className={style.poblacion}>
                 <h3>Orden por cantidad de población: </h3>
                 <select id="orderPopulation" name="orderPopulation" value={selectedOrder} onChange={onClickOrder}>
                     <option value={POPULATION_ASC}>Ascendente</option>
                     <option value={POPULATION_DESC}>Descendente</option>
                 </select>
             </div>
-            <div>
+
+            <div className={style.continente}>
                 <h3>Filtrar por continente </h3>
                 <select  onChange={onClickFilter} value={selectedContinent}>
                     <option value={ALL}>Todos los continentes</option>
@@ -242,7 +244,7 @@ const ButtonsToOrder = ()=>{
                 </select>
             </div>
 
-            <div>
+            <div className={style.turismo}>
                 <h3>Filtrar por actividad turistica: </h3>   
                 <select  value={selectedTourism} onChange={onClickTourism}>
                     {tourism && tourism.map((activity) =>( <option key ={activity.id} value={activity.id} > 

@@ -1,0 +1,27 @@
+.containerPagination{
+    background-color: rgba(214, 147, 23, 0.788);
+    align-items: center;
+    text-align: center;
+    height: 50px;
+}
+
+.numberPagination{
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgb(204, 200, 200);
+    width: 25px;
+    height: 30px;
+
+}
+
+.prevNext{
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgb(238, 120, 120);
+    width: 80px;
+    height: 30px;
+}
+.prevNext:hover {
+    background-color: #f87f3af1 ;
+    cursor: pointer;
+ }

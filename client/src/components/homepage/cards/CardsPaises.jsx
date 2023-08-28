@@ -43,7 +43,7 @@ const CardsPaises = () =>{
 
         {countriesToDisplay .map(country => (
           <CardPais key={country.id} country={country} />
-        ))};
+        ))}
 
       </div>
       //countriesToDisplay es una sublista de países que se mostrarán en la página actual.

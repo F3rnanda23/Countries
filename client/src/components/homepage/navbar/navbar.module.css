@@ -1,0 +1,25 @@
+
+.input{
+    width: 400px;
+    height: 8px; 
+    padding: 15px; 
+    border-radius: 8px;
+    background-color: rgb(238, 229, 219);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn2{
+    width: 70px;
+    height: 25px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: rgba(161, 221, 201, 0.747);
+    color: rgb(4, 4, 99);
+    font-weight: bold;
+    transition: transform 0.3s, cursor 0.3s, box-shadow 0.3s;
+}
+.btn2:hover {
+    transform: scale(1.1);
+    background-color: rgba(117, 177, 163, 0.911);
+    cursor: pointer;
+}

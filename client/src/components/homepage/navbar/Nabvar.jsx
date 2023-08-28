@@ -21,11 +21,10 @@ const Navbar = () =>{
     
 
     return(
-           <div>
-         <input type='search' id='Search' name='Search' value={namePais} className={style.input}  onChange={handleInputChange} placeholder="Buscar país por nombre"/>
-         <button className={style.btn2} onClick={onSearch}>Buscar</button> 
-         {/* <button  className={style.btn2} onClick={onRandom}>Random</button> */}
-      </div>
+        <div>
+            <input type='search' id='Search' name='Search' value={namePais} className={style.input}  onChange={handleInputChange} placeholder="Buscar país por nombre"/>
+            <button className={style.btn2} onClick={onSearch}>Buscar</button> 
+        </div>
     )
 
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePage } from '../../../redux/actions';
+import style from './pagination.module.css'
 //Cada vez que cambias de página, la función changePage se dispara para actualizar la página actual en el estado
 // de Redux y, por lo tanto, actualiza la lista de países que se muestra en el componente.
 
@@ -19,10 +20,11 @@ const Pagination = () => {
   };
 
   return (
-    <div>
+    <div className={style.containerPagination}>
       <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
+            className={style.prevNext}
       >
            &laquo; { 'prev'}
       </button>
@@ -32,6 +34,7 @@ const Pagination = () => {
           key={index}
           onClick={() => handlePageChange(index + 1)}
           disabled={currentPage === index + 1 ? 'active' : ''}
+          className={style.numberPagination}
         >
           {index + 1}
         </button>
@@ -40,6 +43,7 @@ const Pagination = () => {
       <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
+            className={style.prevNext}
       >
           &raquo; {'next'}
       </button>

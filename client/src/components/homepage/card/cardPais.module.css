@@ -1,18 +1,49 @@
-.containerCard{
- background-color: rgb(15, 151, 22);
+
+
+/*contenedor de card*/
+.containerCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center; 
+  border-radius: 20px;
+  background-image: url('../../../images/fondoCards.jpg');
+  background-size: cover;
+  height: 400px;
+  margin-bottom: 20px;
 }
 
+
+/*card con name, img y continents*/
 .Card {
   flex: 0 0 calc(20% - 20px); /* Calcula el ancho de cada tarjeta para 5 columnas */
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 2px solid #260230;
+  border-radius: 20px;
   padding: 10px;
   margin: 10px;
-  background-color: #cdeeea;
+  background-color: #9ae4db;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  animation: backgroundChange 4s infinite alternate;
+}
+@keyframes backgroundChange {
+  0% {
+    background-color: rgba(61, 163, 74, 0.692); /* Define el color inicial */
+  }
+  100% {
+    background-color:rgba(74, 120, 219, 0.521) /* Define el color final */
+  }
 }
 
 .Card img {
   max-width: 100%;
   border-radius: 10px;
+}
+
+.link{
+  text-decoration: none;
+  color:rgb(35, 2, 66);
+  font-weight: bold;
+  text-align: center;
 }

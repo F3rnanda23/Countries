@@ -1,0 +1,46 @@
+
+.containerSelectores{
+    display: flex;
+    margin-bottom: 50px;
+   
+}
+
+.alfabeto{
+    margin-right: 50px;
+    margin-left: 100px;
+}
+
+.alfabeto h3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+.poblacion{
+    margin-right: 50px;
+    margin-left: 5px;
+}
+
+.poblacion h3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+.continente{
+    margin-right: 50px;
+    margin-left: 5px;
+}
+
+.continente h3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+.turismo{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.turismo h3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}

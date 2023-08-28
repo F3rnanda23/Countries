@@ -4,6 +4,7 @@ import CardsPaises from "../cards/CardsPaises";
 import Navbar from "../navbar/Nabvar";
 import Pagination from "../pagination/Patigation";
 import ButtonsToOrder from "../buttons/ButtonToOrderFilter";
+import  style from './home.module.css';
 
 
 
@@ -29,37 +30,40 @@ const Home = () =>{
 
     return (
         <div>
-             <h2> COUNTRIES </h2>
+          
+            <div className={style.containerUpHome}>
+                <div className={style.h2}>
+                <h2 style={{ fontFamily: 'Comic Sans MS' }}>COUNTRIES</h2>
+                </div>
 
-             
+                <div className={style.buttons}>
+                    {isLoggedIn && (
+                        <button onClick={handleLogout} className={style.buttonsLogout}>Logout</button>
+                    )}
+                    <br />
 
-            <div>
-                {isLoggedIn && (
-                    <button onClick={handleLogout}>Logout</button>
-                )};
-                
+                    <button onClick={handleResetFilters} className={style.buttonsReset}>
+                        Reset Filters
+                    </button>
+                </div>
 
-                <button onClick={handleResetFilters} style={{ cursor: 'pointer' }}>
-                    Reset Filters
-                </button>
+                <div className={style.containerNav}>
+                    <Navbar />
+                </div>
+
+                <div className={style.crearActividad}>
+                    <button onClick={handleActivities} >
+                        Crear actividad turística
+                    </button> 
+                </div>
+
+                <div className={style.botonesSelectores}>
+                    <ButtonsToOrder />
+                </div>
             </div>
 
-            <div>
-                <Navbar />
-            </div>
 
-            <div>
-                <button onClick={handleActivities} style={{ cursor: 'pointer' }}>
-                    Crear actividad turística
-                </button> 
-            </div>
-
-            <div>
-                <ButtonsToOrder />
-            </div>
-
-
-            <div>
+            <div className={style.containerCardsHome}>
                 <CardsPaises />
             </div>
 
