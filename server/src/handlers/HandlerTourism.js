@@ -2,7 +2,7 @@
 
 
 const allTourismHandler= async (req, res)=>{
-    
+
     try {
     const allTourism = await getAllTourism();
 
@@ -14,20 +14,23 @@ const allTourismHandler= async (req, res)=>{
 };
 
 const tourismCreateHandler=async (req, res)=>{
- 
+   
     try {
         const {  nombre, dificultad, duracion, temporada, countryId } = req.body;
+       
         const getTourismNotRepeated= await getTourism(
           nombre, 
           dificultad,
           duracion,
           temporada
         );
-       
+      
         if (!getTourismNotRepeated){
             
             const  tourismCreated =  tourismCreate( nombre, dificultad, duracion, temporada, countryId )
+            
             res.status(200).json(tourismCreated)
+            
         }
         else {
             res.status(404).json({error:"Este turismo ya está creado"})

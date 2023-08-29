@@ -51,7 +51,10 @@ const TourismForm = () =>{
    
 
     const handlerChange= (event) =>{
-
+        console.log('aqui2', event.target.name)
+        console.log('aqui2', event.target.value)
+        
+        
         setTourismData({
             ...tourismData,
             [event.target.name] : event.target.value
@@ -98,73 +101,76 @@ const TourismForm = () =>{
     
     };
 
-    const onClickTourism = (event)=>{
-        const countryName =event.target.value;
-       
 
-        if(countryName){
-            dispatch (getAllCountries())
-        }
-    };
 
 
     return(
-        <form onSubmit={handleSubmit}>
-            <h2>Crear actividad turística</h2>
+        <form className={style.containerForm} onSubmit={handleSubmit}>
+            <h2 >Crear actividad turística</h2>
 
-            <label htmlFor="nombre" className={style.labelEmail}>Nombre: </label>
-            <input type="nombre" name="nombre" id="nombre" value={tourismData.nombre} onChange={handlerChange} />
-            {errors.nombre && <p>{errors.nombre }</p>}
+            <div className={style.containerInputs}>
+                <label htmlFor="nombre" className={style.labels}>Nombre: </label>
+                <input type="nombre" name="nombre" id="nombre" className={style.Inputs} value={tourismData.nombre} onChange={handlerChange} />
+                {errors.nombre && <p>{errors.nombre }</p>}
 
-            <br/>
-            <br/>
-            
-            <label htmlFor="dificultad" className={style.labelpassword}>Dificultad: </label>
-            <input type="dificultad"  name="dificultad" id="dificultad"  value={tourismData.dificultad} onChange={handlerChange} />
-            {errors.dificultad && <p>{errors.dificultad }</p>}
+                <br/>
+                <br/>
+                
+                <label htmlFor="dificultad" className={style.labels}>Dificultad: </label>
+                <input type="dificultad"  name="dificultad" id="dificultad"  className={style.Inputs} value={tourismData.dificultad} onChange={handlerChange} />
+                {errors.dificultad && <p>{errors.dificultad }</p>}
 
-            <br/>
-            <br/>
-            
-            <label htmlFor="duracion" className={style.labelpassword}>Duración: </label>
-            <input type="duracion"  name="duracion"  id="duracion"  value={tourismData.duracion} onChange={handlerChange} />
-            {errors.duracion && <p>{errors.duracion }</p>}
+                <br/>
+                <br/>
+                
+                <label htmlFor="duracion" className={style.labels}>Duración: </label>
+                <input type="duracion"  name="duracion"  id="duracion"   className={style.Inputs} value={tourismData.duracion} onChange={handlerChange} />
+                {errors.duracion && <p>{errors.duracion }</p>}
 
-            <br/>
-            <br/>
-            
-            <label htmlFor="temporada" className={style.labelpassword}>Temporada: </label>
-            <input type="temporada"  name="temporada" id="temporada"  value={tourismData.temporada} onChange={handlerChange} />
-            {errors.temporada && <p>{errors.temporada }</p>}
+                <br/>
+                <br/>
+                
+                <label htmlFor="temporada" className={style.labels}>Temporada: </label>
+                <input type="temporada"  name="temporada" id="temporada" className={style.Inputs} value={tourismData.temporada} onChange={handlerChange} />
+                {errors.temporada && <p>{errors.temporada }</p>}
 
-            <br/>
-            <br/>
-
-           
-        
+                <br/>
+                <br/>
+             <div>
             <h3>Country: </h3>   
-                <select   value={countries.id} onChange={onClickTourism}>
-                    {countries && countries.map((country) =>( <option key ={country.id} value={country.id} > 
-                    {country.name} 
-                    </option>
-                    ))}
-                
-                </select>
+                    <select  className={style.InputCountry} name='countryId' onChange={handlerChange}>
+                        
+                        {countries && countries.map((country) =>( <option key ={country.id} value={country.id} > 
+                        {country.name} 
+                        </option>
+                        ))}
+                    
+                    </select>
 
-             <br/>
-             <br/>
+                <br/>
+                <br/>
 
-             {tourismError && hasInputChanges && tourismData.nombre === '' ? <p>¡Esta actividad turística ya está registrada!</p> : null}
-                
+                {tourismError && hasInputChanges && tourismData.nombre === '' ? <p>¡Esta actividad turística ya está registrada!</p> : null}
+                    
+            
+                <br/>
+                <br/>
+            </div>
+        
            
-            <br/>
-            <br/>
+            <div>
+                <button className={style.btn}>Crear actividad</button>
 
-            <button className={style.btn}>Crear actividad</button>
+                <Link to="/home" className={style.link}>
+                    <button className={style.btn}>Volver a Home</button>
+                </Link>
+            </div>
 
-            <Link to="/home" className={style.link}>
-                <button className={style.btn}>Volver a Home</button>
-            </Link>
+            </div>
+
+            
+          
+           
 
         {/* //componente modal */}
             <TourismModal isOpen={modalOfState} onClose={() => dispatch({type: MODAL_TOURISM, payload: false}) } />

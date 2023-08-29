@@ -1,0 +1,7 @@
+
+.letras{
+    color: rgb(255, 21, 21);
+    font-weight: bold;
+    -webkit-text-stroke: 1px #2b0202; 
+    font-size: 15px;
+}

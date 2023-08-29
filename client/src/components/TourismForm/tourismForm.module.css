@@ -1,0 +1,78 @@
+body{
+    background: url('../../images/fondoFom.jpg')
+}
+.containerForm h2{
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(30, 134, 9);
+    -webkit-text-stroke: 2px #021d0d;
+    font-size: 35px;
+}
+
+.containerInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(9, 94, 65, 0.5); /* Usamos un valor de opacidad (0.8) para el color de fondo */
+    position: absolute; /* Posición absoluta para superponerlo en el body */
+    width: 60%; /* Opcional, ajusta el ancho según tus necesidades */
+    height: 90%;
+    border: 2px solid #100738; 
+    left: 50%;
+    top: 50%;
+    margin-top: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.containerInputs h3{
+    font-size: 15px;
+    text-align: center;
+    font-size: 22px;
+    color: rgb(218, 174, 247);
+    -webkit-text-stroke: 1.5px #2a044e;
+}
+
+.labels{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(218, 174, 247);
+    -webkit-text-stroke: 1.5px #2a044e;
+}
+
+.Inputs{
+    padding: 3px;
+    border: 2px solid #1b1c35;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 50%;
+    background-color: rgb(191, 245, 227);
+   
+}
+
+.InputCountry{
+    padding: 3px;
+    border: 2px solid #1b1c35;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: rgb(191, 245, 227);
+   
+}
+
+.btn{
+    margin-right: 20px;
+    font-family: 'Lucida Sans';
+    color:#2b0202;
+    font-Weight: 800px; 
+    border-radius: 10px;
+    width: 200px;
+    height: 20px;
+    
+}
+.btn:hover {
+    background-color: #af490ef1 ;
+    cursor: pointer;
+ }
