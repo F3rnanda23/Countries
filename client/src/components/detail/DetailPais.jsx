@@ -20,46 +20,62 @@ const DetailPais = ()=>{
      
     }, [dispatch]);
 
+
+
     const handleDetail =()=>{
       navigate('/home');
-  };
+    };
 
   console.log(countryDetail,'aqui turismo')
 
 
      return(
-        <div className={style.containerDetalle}>
-          <div>
-            <h2>Nombre: {countryDetail.name}</h2>
-            <h2>ID: {countryDetail.id}</h2>
-            <h2>Continente: {countryDetail.continents}</h2>
-            <h2>Capital: {countryDetail.capital}</h2>
-            <h2>Subregion: {countryDetail.subregion}</h2>
-            <h2>Area: {countryDetail.area} km²</h2>
-            <h2>Población: {countryDetail.population} personas</h2>
-            <img src={countryDetail.flags} alt={countryDetail?.name}/>
-          </div>
+        <div className={style.containerAll}>
+          <div className={style.containerDetalle}>
 
-          <br/>
-          <br/>
+           
+                <div className={style.containerText}>
 
-          {countryDetail.Tourisms &&
-            countryDetail.Tourisms.map((activity) => (
-              
-              <div key={activity.id}>
-                <p>name: {activity.nombre}</p>
-                <p>difficulty: {activity.dificultad}</p>
-                <p>duracion: {activity.duracion}</p>
-                <p>season: {activity.temporada}</p>
-              </div>
-             
-            ))}
- 
-            <div >
-                    <button onClick={handleDetail} >
+                   <h2>Detalle del País</h2> 
+                   
+                    <h3>Nombre: {countryDetail.name}</h3>
+                    <h3>ID: {countryDetail.id}</h3>
+                    <h3>Continente: {countryDetail.continents}</h3>
+                    <h3>Capital: {countryDetail.capital}</h3>
+                    <h3>Subregion: {countryDetail.subregion}</h3>
+                    <h3>Area: {countryDetail.area} km²</h3>
+                    <h3>Población: {countryDetail.population} personas</h3>
+                    <img src={countryDetail.flags} alt={countryDetail?.name}/>
+                </div>
+
+                <br/>
+                <br/>
+
+                <h3 className={style.containerDetalleH3}>Actividades turísticas del país</h3>
+
+                <br/>
+                <br/>
+
+                {countryDetail.Tourisms &&
+                  countryDetail.Tourisms.map((activity) => (
+                    
+                    <div className={style.containerCountry} key={activity.id}>
+                      <p> Nombre de la actividad: {activity.nombre}</p>
+                      <p> Grado de dificultad: nivel {activity.dificultad}</p>
+                      <p> Duración: {activity.duracion} min </p>
+                      <p> Estación de año: {activity.temporada}</p>
+                    </div>
+                  
+                  ))}
+
+            
+  
+                <div className={style.contenedorButton}>
+                    <button className={style.button} onClick={handleDetail} >
                         Volver a Home
                     </button> 
-            </div>
+                </div>
+          </div>
       
         </div>
     );
@@ -68,3 +84,8 @@ const DetailPais = ()=>{
 
 
 export default DetailPais;
+
+
+
+
+

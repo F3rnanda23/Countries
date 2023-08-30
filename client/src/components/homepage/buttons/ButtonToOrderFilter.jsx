@@ -19,14 +19,14 @@ const ALL = 'ALL';
 
 const ButtonsToOrder = ()=>{
     const countries = useSelector(state => state.country);
-    const countriesOrder = useSelector(state => state.currentOrderType); //estado para mantener el orden 
-    const currentFilterType = useSelector(state => state.currentFilteredType);// estado para mantener el filtrado
-    const tourism = useSelector(state => state.tourism);// estado para los tourism
+    const countriesOrder = useSelector(state => state.currentOrderType); //estado para  orden 
+    const currentFilterType = useSelector(state => state.currentFilteredType);// estado para  filtrado
+    const tourism = useSelector(state => state.tourism);// estado para tourism, los trae getAllTourism
 
     const dispatch = useDispatch();
 
-    const [selectedOrder, setSelectedOrder] = useState(countriesOrder); //orden y filtrado
-    const [selectedContinent, setSelectedContinent] = useState(currentFilterType);  // continentes
+    const [selectedOrder, setSelectedOrder] = useState(countriesOrder); //mantener orden y filtrado
+    const [selectedContinent, setSelectedContinent] = useState(currentFilterType);  // mantener continentes
     const [selectedTourism, setSelectedTourism] = useState('');  //turismo
 
     useEffect(() => {
@@ -39,11 +39,12 @@ const ButtonsToOrder = ()=>{
        dispatch( getAllTourism())
     }, [dispatch]);
 
-
+// ORDER
     const onClickOrder = (event) => {
         if (currentFilterType == "") {  // SI NO HAY  FILTRO Y QUIERO ORDENAR
             orderSwitch(event.target.value);
-        } else { //SI HAY UN FILTRO Y QUIERO ORDENAR  
+        } //SI HAY UN FILTRO Y QUIERO ORDENAR  
+        else { 
             const countriesFilter = filter(currentFilterType,countries);//filter(el continente que se filtro , paises)
             filterOrderSwitch(event.target.value,countriesFilter); //  
         }                       //value orden , lo paises filtrados
@@ -55,7 +56,7 @@ const ButtonsToOrder = ()=>{
             case ALPHABETIC_ASC:
                 setSelectedOrder(ALPHABETIC_ASC);
                 orderOfCountries = onSearchAlfabeticAscend(countriesFilter);
-                dispatch(updateCurrentOrderType(ALPHABETIC_ASC));// mantener orden al desmontar
+                dispatch(updateCurrentOrderType(ALPHABETIC_ASC));// actualiza estado de orden 
                 break;
             case ALPHABETIC_DESC:
                 setSelectedOrder(ALPHABETIC_DESC);
@@ -73,7 +74,7 @@ const ButtonsToOrder = ()=>{
                 dispatch(updateCurrentOrderType(POPULATION_DESC));
                 break;
         }
-        dispatch(updateCountryOrder(orderOfCountries));  // se guarda en country filter para motrar los paises con filtro y orden
+        dispatch(updateCountryOrder(orderOfCountries));  // se guarda en countryfilter para mostrar en cards los paises con filtro y orden
 
 
     }
@@ -119,14 +120,14 @@ const ButtonsToOrder = ()=>{
     const onClickFilter = (event) =>{
         setSelectedContinent(event.target.value);
 
-        if (countriesOrder == "") {       //NO HAY UN ORDER Y SE QUIERE 
-            if (event.target.value === 'ALL') {//FILTRAR por todos los contientes
+        if (countriesOrder == "") {       //NO HAY UN ORDER Y SE QUIERE FILTRAR por todos los contientes
+            if (event.target.value === 'ALL') {
                 dispatch(getAllCountries());
                 dispatch(updateCurrentFilterType(event.target.value));
             } else { // FILTRAR por un contientes          
                 const filteredCountries = filter(event.target.value,countries); //continente que se quiere filtrar, el estado
-                dispatch(updateCountryOrder(filteredCountries));
-                dispatch(updateCurrentFilterType(event.target.value));
+                dispatch(updateCurrentFilterType(event.target.value)); //guarda en est global  el continent filtrado
+                dispatch(updateCountryOrder(filteredCountries));//renderiza en cards lo filtrado
             };
         } else { // HAY UN ORDER Y SE QUIERE HACER UN FILTER  los continentes son todos
             let orderOfCountries = [];
@@ -145,8 +146,9 @@ const ButtonsToOrder = ()=>{
                         orderOfCountries =onSearchPopulatDescend(countries); 
                         break;
                 }
-                dispatch(updateCountryOrder(orderOfCountries));
-                dispatch(updateCurrentFilterType(event.target.value));
+                dispatch(updateCurrentFilterType(event.target.value));//guarda en est global  el continent filtrado (todos)
+                dispatch(updateCountryOrder(orderOfCountries));//renderiza en cards lo ordenado
+               
 
             } else {// HAY UN ORDER Y SE QUIERE HACER UN FILTER  y hay un continente seleccionado
                 switch(countriesOrder){
@@ -160,15 +162,15 @@ const ButtonsToOrder = ()=>{
                         orderOfCountries =onSearchPopulatAscend(countries); 
                         break;
                     case POPULATION_DESC:
-                        orderOfCountries =onSearchPopulatDescend(countries);               //aca s ehaceell orden
+                        orderOfCountries =onSearchPopulatDescend(countries);              
                         break;
                 }                                   //continente , orden
-                const filteredCountries = filter(event.target.value,orderOfCountries);    // aca se haceel filter
+                const filteredCountries = filter(event.target.value,orderOfCountries);   
+                dispatch(updateCurrentFilterType(event.target.value)); 
                 dispatch(updateCountryOrder(filteredCountries));  // se hace un dispatch a countriesFilter(estado) con lso paises ordenados y filtrados
-                dispatch(updateCurrentFilterType(event.target.value));
+                
             };
-            
-
+        
         }
         
     }
@@ -207,7 +209,7 @@ const ButtonsToOrder = ()=>{
                 });
                 return turismo.length > 0  // si es cero el pais lo salta y no lo renderiza
             });
-            dispatch(updateCountryOrder(countriesFilterTourims));
+            dispatch(updateCountryOrder(countriesFilterTourims));// se le pasa a cards en su estado countriesFilter el turismo retornado
    
         }
        

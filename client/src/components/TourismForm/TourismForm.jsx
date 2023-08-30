@@ -9,7 +9,8 @@ import { MODAL_TOURISM } from '../../redux/action-types';
 
 const TourismForm = () =>{
 
-    const modalOfState = useSelector(state => state.modalState);
+   // const modalOfState = useSelector(state => state.modalState);
+    const [showMessage, setShowMessage] = useState(false);
     const tourismError = useSelector(state => state.tourismError);
     const countries = useSelector(state => state.country);
     
@@ -37,26 +38,24 @@ const TourismForm = () =>{
 
     
 
-    const [hasInputChanges, setHasInputChanges] = useState(false); // cambios en los inputs ( false si no hay cambios)
+    const [hasInputError, setHasInputError] = useState(false); //  si es true es por que hay error y sirve para renderizar el mensaje de error
 
 
     useEffect(() => {
         if (tourismError) {
-            dispatch({ type: MODAL_TOURISM, payload: false }); // Cerrar el modal si hay error
-            setHasInputChanges(true);
+          //  dispatch({ type: MODAL_TOURISM, payload: false }); // Cerrar el modal si hay error
+          setHasInputError(true);
         }
-        dispatch(getAllCountries())
+        dispatch(getAllCountries())   //para actualizar el estado global y que se renderize en selector
     }, [ tourismData, dispatch, tourismError]);
 
    
 
     const handlerChange= (event) =>{
-        console.log('aqui2', event.target.name)
-        console.log('aqui2', event.target.value)
         
         
         setTourismData({
-            ...tourismData,
+            ...tourismData,  //actualiza este estado con lo valores ingresados
             [event.target.name] : event.target.value
         });
 
@@ -66,9 +65,9 @@ const TourismForm = () =>{
         }));
 
         if (tourismError) {
-            setHasInputChanges(true);
+            setHasInputError(true);
         } else {
-            setHasInputChanges(false);
+            setHasInputError(false);
         }
 
     };
@@ -81,7 +80,7 @@ const TourismForm = () =>{
         const hasErrors = Object.values(errors).some(error => error !== '');
 
         if (!hasErrors) {
-          dispatch(createTourismCountry(tourismData));
+          dispatch(createTourismCountry(tourismData));// despacha la accion con los datos del turismo
 
       
           setTourismData({ // Limpia los inputs
@@ -92,8 +91,8 @@ const TourismForm = () =>{
             countryId: []
           });
 
-          setHasInputChanges(false); //en falso, ya que el formulario se ha enviado y no hay cambios pendientes.
-
+          setHasInputError(false); //en falso, ya que el formulario se ha enviado y no hay errores
+          setShowMessage(true);
     
         } else {
           console.log('No se puede enviar la solicitud debido a errores de validación');
@@ -105,8 +104,10 @@ const TourismForm = () =>{
 
 
     return(
+      
         <form className={style.containerForm} onSubmit={handleSubmit}>
-            <h2 >Crear actividad turística</h2>
+            <div>
+                 <h2 >Crear actividad turística</h2>
 
             <div className={style.containerInputs}>
                 <label htmlFor="nombre" className={style.labels}>Nombre: </label>
@@ -137,7 +138,7 @@ const TourismForm = () =>{
                 <br/>
                 <br/>
              <div>
-            <h3>Country: </h3>   
+                    <h3>Country: </h3>   
                     <select  className={style.InputCountry} name='countryId' onChange={handlerChange}>
                         
                         {countries && countries.map((country) =>( <option key ={country.id} value={country.id} > 
@@ -147,14 +148,17 @@ const TourismForm = () =>{
                     
                     </select>
 
-                <br/>
-                <br/>
+                    <br/>
+                    <br/>
 
-                {tourismError && hasInputChanges && tourismData.nombre === '' ? <p>¡Esta actividad turística ya está registrada!</p> : null}
+                    {!tourismError && showMessage && ( <span className={style.Message}>La actividad turística ha sido creada exitosamente!</span>)}
                     
-            
-                <br/>
-                <br/>
+
+                    {tourismError && hasInputError && tourismData.nombre === '' ? <p className={style.parrafo} >¡Esta actividad turística ya está registrada!</p> : null}
+                        
+                
+                    <br/>
+                    <br/>
             </div>
         
            
@@ -173,7 +177,10 @@ const TourismForm = () =>{
            
 
         {/* //componente modal */}
-            <TourismModal isOpen={modalOfState} onClose={() => dispatch({type: MODAL_TOURISM, payload: false}) } />
+            {/* <TourismModal isOpen={modalOfState} onClose={() => dispatch({type: MODAL_TOURISM, payload: false}) } /> */}
+
+            </div>
+           
         </form>
     );
 
@@ -182,313 +189,18 @@ const TourismForm = () =>{
  export default TourismForm;
 
 
-//  import {useState, useEffect } from "react";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { createTourismCountry } from '../../redux/actions';
-// import Validation from "./validation";
-// import TourismModal from "./TourismModal";
-// import style from './tourismForm.module.css'
-// import { MODAL_TOURISM } from '../../redux/action-types';
 
-// const TourismForm = () =>{
 
-//     const modalOfState = useSelector(state => state.modalState);
-//     const tourismError = useSelector(state => state.tourismError);
-    
-   
-    
-//     const dispatch = useDispatch();
 
-    
 
-//     const [tourismData, setTourismData] = useState({
-//         nombre: '',
-//         dificultad:'',
-//         duracion: '',
-//         temporada:'',
-//         countryId: []
-//     });
-   
-//     const [errors, setErrors] = useState({
-//         nombre: '',
-//         dificultad:'',
-//         duracion: '',
-//         temporada:'',
-//         country: []
-//     });
 
-//     const [hasInputChanges, setHasInputChanges] = useState(false); // cambios en los inputs ( false si no hay cambios)
 
 
-//     useEffect(() => {
-//         if (tourismError) {
-//             dispatch({ type: MODAL_TOURISM, payload: false }); // Cerrar el modal si hay error
-//             setHasInputChanges(true);
-//         }
-//     }, [ tourismData, dispatch, tourismError]);
 
-   
 
-//     const handlerChange= (event) =>{
 
-//         setTourismData({
-//             ...tourismData,
-//             [event.target.name] : event.target.value
-//         });
 
-//         setErrors(Validation({
-//             ...tourismData,
-//             [event.target.name] : event.target.value
-//         }));
 
-//         if (tourismError) {
-//             setHasInputChanges(true);
-//         } else {
-//             setHasInputChanges(false);
-//         }
 
-//     };
 
 
-
-//     const handleSubmit = (event) =>{
-//         event.preventDefault();
-
-//         const hasErrors = Object.values(errors).some(error => error !== '');
-
-//         if (!hasErrors) {
-//           dispatch(createTourismCountry(tourismData));
-
-      
-//           setTourismData({ // Limpia los inputs
-//             nombre: '',
-//             dificultad: '',
-//             duracion: '',
-//             temporada: '',
-//             countryId: []
-//           });
-
-//           setHasInputChanges(false); //en falso, ya que el formulario se ha enviado y no hay cambios pendientes.
-
-    
-//         } else {
-//           console.log('No se puede enviar la solicitud debido a errores de validación');
-//         }
-    
-//     };
-
-
-
-//     return(
-//         <form onSubmit={handleSubmit}>
-//             <h2>Crear actividad turística</h2>
-
-//             <label htmlFor="nombre" className={style.labelEmail}>Nombre: </label>
-//             <input type="nombre" name="nombre" id="nombre" value={tourismData.nombre} onChange={handlerChange} />
-//             {errors.nombre && <p>{errors.nombre }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="dificultad" className={style.labelpassword}>Dificultad: </label>
-//             <input type="dificultad"  name="dificultad" id="dificultad"  value={tourismData.dificultad} onChange={handlerChange} />
-//             {errors.dificultad && <p>{errors.dificultad }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="duracion" className={style.labelpassword}>Duración: </label>
-//             <input type="duracion"  name="duracion"  id="duracion"  value={tourismData.duracion} onChange={handlerChange} />
-//             {errors.duracion && <p>{errors.duracion }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="temporada" className={style.labelpassword}>Temporada: </label>
-//             <input type="temporada"  name="temporada" id="temporada"  value={tourismData.temporada} onChange={handlerChange} />
-//             {errors.temporada && <p>{errors.temporada }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="countryId" className={style.labelpassword}>Country: </label>
-//             <input type="countryId"  name="countryId"  id="countryId" value={tourismData.countryId} onChange={handlerChange} />
-//             {errors.country && <p>{errors.country }</p>}
-            
-
-//              <br/>
-//              <br/>
-
-//              {tourismError && hasInputChanges && tourismData.nombre === '' ? <p>¡Esta actividad turística ya está registrada!</p> : null}
-                
-           
-//             <br/>
-//             <br/>
-
-//             <button className={style.btn}>Crear actividad</button>
-
-//         {/* //componente modal */}
-//             <TourismModal isOpen={modalOfState} onClose={() => dispatch({type: MODAL_TOURISM, payload: false}) } />
-//         </form>
-//     );
-
-// };
-
-//  export default TourismForm;
-
-
-
-//22222222222222222222222
-// import {useState, useEffect } from "react";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { createTourismCountry } from '../../redux/actions';
-// import Validation from "./validation";
-// import TourismModal from "./TourismModal";
-// import style from './tourismForm.module.css'
-// import { MODAL_TOURISM } from '../../redux/action-types';
-
-// const TourismForm = () =>{
-
-//     const modalOfState = useSelector(state => state.modalState);
-//     const tourismError = useSelector(state => state.tourismError);
-    
-   
-    
-//     const dispatch = useDispatch();
-
-    
-
-//     const [tourismData, setTourismData] = useState({
-//         nombre: '',
-//         dificultad:'',
-//         duracion: '',
-//         temporada:'',
-//         countryId: []
-//     });
-   
-//     const [errors, setErrors] = useState({
-//         nombre: '',
-//         dificultad:'',
-//         duracion: '',
-//         temporada:'',
-//         country: []
-//     });
-
-//     const [hasInputChanges, setHasInputChanges] = useState(false); // cambios en los inputs ( false si no hay cambios)
-
-
-//     useEffect(() => {
-//         if (tourismError) {
-//             dispatch({ type: MODAL_TOURISM, payload: false }); // Cerrar el modal si hay error
-//             setHasInputChanges(true);
-//         }
-//     }, [ tourismData, dispatch, tourismError]);
-
-   
-
-//     const handlerChange= (event) =>{
-
-//         setTourismData({
-//             ...tourismData,
-//             [event.target.name] : event.target.value
-//         });
-
-//         setErrors(Validation({
-//             ...tourismData,
-//             [event.target.name] : event.target.value
-//         }));
-
-//         if (tourismError) {
-//             setHasInputChanges(true);
-//         } else {
-//             setHasInputChanges(false);
-//         }
-
-//     };
-
-
-
-//     const handleSubmit = (event) =>{
-//         event.preventDefault();
-
-//         const hasErrors = Object.values(errors).some(error => error !== '');
-
-//         if (!hasErrors) {
-//           dispatch(createTourismCountry(tourismData));
-
-      
-//           setTourismData({ // Limpia los inputs
-//             nombre: '',
-//             dificultad: '',
-//             duracion: '',
-//             temporada: '',
-//             countryId: []
-//           });
-
-//           setHasInputChanges(false); //en falso, ya que el formulario se ha enviado y no hay cambios pendientes.
-
-    
-//         } else {
-//           console.log('No se puede enviar la solicitud debido a errores de validación');
-//         }
-    
-//     };
-
-
-
-//     return(
-//         <form onSubmit={handleSubmit}>
-//             <h2>Crear actividad turística</h2>
-
-//             <label htmlFor="nombre" className={style.labelEmail}>Nombre: </label>
-//             <input type="nombre" name="nombre" id="nombre" value={tourismData.nombre} onChange={handlerChange} />
-//             {errors.nombre && <p>{errors.nombre }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="dificultad" className={style.labelpassword}>Dificultad: </label>
-//             <input type="dificultad"  name="dificultad" id="dificultad"  value={tourismData.dificultad} onChange={handlerChange} />
-//             {errors.dificultad && <p>{errors.dificultad }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="duracion" className={style.labelpassword}>Duración: </label>
-//             <input type="duracion"  name="duracion"  id="duracion"  value={tourismData.duracion} onChange={handlerChange} />
-//             {errors.duracion && <p>{errors.duracion }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="temporada" className={style.labelpassword}>Temporada: </label>
-//             <input type="temporada"  name="temporada" id="temporada"  value={tourismData.temporada} onChange={handlerChange} />
-//             {errors.temporada && <p>{errors.temporada }</p>}
-
-//             <br/>
-//             <br/>
-            
-//             <label htmlFor="countryId" className={style.labelpassword}>Country: </label>
-//             <input type="countryId"  name="countryId"  id="countryId" value={tourismData.countryId} onChange={handlerChange} />
-//             {errors.country && <p>{errors.country }</p>}
-            
-
-//              <br/>
-//              <br/>
-
-//              {tourismError && hasInputChanges && tourismData.nombre === '' ? <p>¡Esta actividad turística ya está registrada!</p> : null}
-                
-           
-//             <br/>
-//             <br/>
-
-//             <button className={style.btn}>Crear actividad</button>
-
-//         {/* //componente modal */}
-//             <TourismModal isOpen={modalOfState} onClose={() => dispatch({type: MODAL_TOURISM, payload: false}) } />
-//         </form>
-//     );
-
-// };
-
-//  export default TourismForm;

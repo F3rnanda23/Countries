@@ -52,10 +52,10 @@ const reducer = (state = initialState, action)=>{
                 countryDetail: action.payload,
             };
 
-        case UPDATE_SORTED_COUNTRIES:  //actualizar paises ordenados
+        case UPDATE_SORTED_COUNTRIES:  
             return {
                 ...state,
-                countriesFilter: action.payload,
+                countriesFilter: action.payload,   //recibe cards
             };
 
         case UPDATE_CURRENT_ORDER_TYPE:  //actualizar paises ordenados
@@ -65,7 +65,7 @@ const reducer = (state = initialState, action)=>{
             };
             
 
-        case MODAL_TOURISM:  //actualizar paises ordenados
+        case MODAL_TOURISM:  
        
             return {
                 ...state,
@@ -84,10 +84,10 @@ const reducer = (state = initialState, action)=>{
                 tourismError: false,
         };
 
-        case UPDATE_CURRENT_FILTER_TYPE:  //actualizar paises ordenados
+        case UPDATE_CURRENT_FILTER_TYPE:  //actualizar paises filtrados
             return {
                 ...state,
-                currentFilteredType: action.payload, // Actualiza el tipo de orden
+                currentFilteredType: action.payload, 
             };
             
         case GET_TOURISM_SELECTOR:

@@ -3,7 +3,7 @@ import validation from "./validation";
 import { useNavigate } from 'react-router-dom';
 import  style from './login.module.css';
 
-const Login = ()=>{  // OJO AQUI CON EL LOGIN 
+const Login = ()=>{  
 
     const navigate = useNavigate();
     
@@ -21,9 +21,7 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
         password:''
     });
 
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-
-
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);//deshabilitar boton
 
 
 
@@ -70,40 +68,40 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
 
   
     return(
-        <body className={style.login}>
+        <div className={style.login}>
             <div className={style.formContainer}>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="nombre" className={style.textoEstilizado}>Nombre: </label>
-                <input type="nombre" name="nombre" id="nombre" value={userData.nombre} onChange={handlerChange} className={`${style.nameLabel} ${style.inputsForm}`}/>
-                {errors.nombre && <p>{errors.nombre }</p>}
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="nombre" className={style.textoEstilizado}>Nombre: </label>
+                    <input type="nombre" name="nombre" id="nombre" value={userData.nombre} onChange={handlerChange} className={`${style.nameLabel} ${style.inputsForm}`}/>
+                    {errors.nombre && <p>{errors.nombre }</p>}
 
-                <br/>
-                <br/>
-                
-                <label htmlFor="email" className={style.textoEstilizado}>Email: </label>
-                <input type="email" name="email" id="email" value={userData.email} onChange={handlerChange} className={`${style.emailLabel} ${style.inputsForm}`}/>
-                {errors.email && <p>{errors.email }</p>}
+                    <br/>
+                    <br/>
+                    
+                    <label htmlFor="email" className={style.textoEstilizado}>Email: </label>
+                    <input type="email" name="email" id="email" value={userData.email} onChange={handlerChange} className={`${style.emailLabel} ${style.inputsForm}`}/>
+                    {errors.email && <p>{errors.email }</p>}
 
-                <br/>
-                <br/>
-                
-                <label htmlFor="password"className={style.textoEstilizado} >Password: </label>
-                <input type="password"  name="password" id="password" value={userData.password} onChange={handlerChange} className={style.inputsForm}/>
-                {errors.password && <p>{errors.password }</p>}
+                    <br/>
+                    <br/>
+                    
+                    <label htmlFor="password"className={style.textoEstilizado} >Password: </label>
+                    <input type="password"  name="password" id="password" value={userData.password} onChange={handlerChange} className={style.inputsForm}/>
+                    {errors.password && <p>{errors.password }</p>}
 
-                <br/>
-                <br/>
+                    <br/>
+                    <br/>
 
-        
             
-                <button className={`${style.btn} ${isSubmitDisabled ? style.disabledBtn : ''}`}   disabled={isSubmitDisabled} onClick={handleSubmit}> 
-                Ir a home
-                </button>
-            </form>
+                
+                    <button className={`${style.btn} ${isSubmitDisabled ? style.disabledBtn : ''}`}   disabled={isSubmitDisabled} onClick={handleSubmit}> 
+                    Ir a home
+                    </button>
+                </form>
 
         </div>
             
-        </body>
+        </div>
         
         
     )
@@ -111,3 +109,4 @@ const Login = ()=>{  // OJO AQUI CON EL LOGIN
 };
 
 export default Login;
+

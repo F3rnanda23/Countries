@@ -1,11 +1,24 @@
-body{
-    background: url('../../images/fondoFom.jpg')
+
+
+.containerForm{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXJxdGZxbm41YzdibnZxcXZ2ZjFjM2V1cWhkd3k2cGI0a3dsdTV0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5iNEfxu6rHLwkL1tHW/giphy.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  
 }
+
 .containerForm h2{
     text-align: center;
     margin-top: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: rgb(30, 134, 9);
+    color: rgb(183, 245, 14);
     -webkit-text-stroke: 2px #021d0d;
     font-size: 35px;
 }
@@ -16,8 +29,8 @@ body{
     justify-content: center;
     align-items: center;
     background-color: rgba(9, 94, 65, 0.5); /* Usamos un valor de opacidad (0.8) para el color de fondo */
-    position: absolute; /* Posición absoluta para superponerlo en el body */
-    width: 60%; /* Opcional, ajusta el ancho según tus necesidades */
+    position: absolute; 
+    width: 60%; 
     height: 90%;
     border: 2px solid #100738; 
     left: 50%;
@@ -75,4 +88,14 @@ body{
 .btn:hover {
     background-color: #af490ef1 ;
     cursor: pointer;
+ }
+
+ .Message{
+    color: rgb(205, 219, 9);
+    -webkit-text-stroke: 1px #2402bb; 
+ }
+
+ .parrafo{
+    color: rgb(252, 246, 246);
+    -webkit-text-stroke: 1px #fc0b0b; 
  }
