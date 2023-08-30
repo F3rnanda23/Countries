@@ -19,13 +19,16 @@ const tourismCreate= async ( nombre, dificultad,duracion, temporada, countryId )
         duracion,
         temporada
      })
-     await newActivity.addCountry(countryId);
+     await newActivity.addCountry(countryId)
+
 
      return newActivity
 
 };
 
-const getTourism= async ( nombre, dificultad,duracion, temporada )=>{
+
+
+const getTourism= async ( nombre, dificultad,duracion, temporada )=>{   // buscar un registro en la base de datos que cumpla con ciertos criterios
     return await Tourism.findOne ({
         where: {
             nombre: nombre,

@@ -30,10 +30,10 @@ const getCountryById= async (id)=>{
 
 const getCountryByName= async (name)=> {
     
-    const countryFound = await Country.findAll({
+    const countryFound = await Country.findAll({  //buscar y recuperar todos los registros
         where: {
             name: {
-                [Op.iLike]: `%${name}%` //[Op.iLike] en lugar de [Op.like] para la búsqueda insensible a mayúsculas y minúsculas.
+                [Op.iLike]: `%${name}%` //[Op.iLike]  para la búsqueda insensible a mayúsculas y minúsculas.
             }
         }
     });

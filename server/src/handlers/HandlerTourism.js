@@ -51,6 +51,32 @@ const tourismCreateHandler=async (req, res)=>{
  };
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
 //  "id" : "1",
 //  "nombre" : "trekking",
 //   "dificultad":"4",  

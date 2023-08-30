@@ -6,7 +6,7 @@ const getAllCountriesHandler = async (req,res)=>{
     try {
         const getAllCountries= await getCountries()
         
-        const createdCountries = await Country.bulkCreate( 
+        const createdCountries = await Country.bulkCreate(  //insertar esos datos en una base de datos
             getAllCountries
         )
         

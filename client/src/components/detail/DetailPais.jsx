@@ -28,7 +28,7 @@ const DetailPais = ()=>{
 
   console.log(countryDetail,'aqui turismo')
 
-
+ 
      return(
         <div className={style.containerAll}>
           <div className={style.containerDetalle}>

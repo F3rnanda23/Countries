@@ -1,4 +1,6 @@
-import {useState, useEffect } from "react";
+
+
+ import {useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { createTourismCountry, getAllCountries } from '../../redux/actions';
 import {Link  } from 'react-router-dom';
@@ -10,7 +12,6 @@ import { MODAL_TOURISM } from '../../redux/action-types';
 const TourismForm = () =>{
 
    // const modalOfState = useSelector(state => state.modalState);
-    const [showMessage, setShowMessage] = useState(false);
     const tourismError = useSelector(state => state.tourismError);
     const countries = useSelector(state => state.country);
     
@@ -39,6 +40,7 @@ const TourismForm = () =>{
     
 
     const [hasInputError, setHasInputError] = useState(false); //  si es true es por que hay error y sirve para renderizar el mensaje de error
+    const [showMessage, setShowMessage] = useState(false);//mensaje de correcto
 
 
     useEffect(() => {
@@ -139,13 +141,15 @@ const TourismForm = () =>{
                 <br/>
              <div>
                     <h3>Country: </h3>   
-                    <select  className={style.InputCountry} name='countryId' onChange={handlerChange}>
-                        
-                        {countries && countries.map((country) =>( <option key ={country.id} value={country.id} > 
-                        {country.name} 
-                        </option>
-                        ))}
-                    
+                    <select className={style.InputCountry} name='countryId' onChange={handlerChange}>
+                        {countries &&
+                            countries
+                                .sort((a, b) => a.name.localeCompare(b.name)) 
+                                .map((country) => (
+                                    <option key={country.id} value={country.id}>
+                                        {country.name}
+                                    </option>
+                                ))}
                     </select>
 
                     <br/>
@@ -187,6 +191,12 @@ const TourismForm = () =>{
 };
 
  export default TourismForm;
+
+
+
+
+
+
 
 
 

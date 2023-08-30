@@ -29,14 +29,14 @@ const Pagination = () => {
            &laquo; { 'prev'}
       </button>
 
-      {Array.from({ length: totalPages }, (_, index) => ( //Crea una lista (array) de páginas  y te dice en qué número de página estás.
+      {Array.from({ length: totalPages }, (_, index) => ( //Crea una lista (array) de páginas      // función que se ejecuta para cada elemento del array
         <button
-          key={index}
-          onClick={() => handlePageChange(index + 1)}
-          disabled={currentPage === index + 1 ? 'active' : ''}
-          className={style.numberPagination}
+          key={index}//crea un botón para cada página.
+          onClick={() => handlePageChange(index + 1)}//cambia la página que se muestra.
+          disabled={currentPage === index + 1 ? 'active' : ''}//dehabilita pag actual para hacer click sobre ella misma
+          className={style.numberPagination} // {index + 1}  muestra el número de página en el botón
         >
-          {index + 1}
+          {index + 1}  
         </button>
       ))}
 
@@ -52,6 +52,38 @@ const Pagination = () => {
 };
 
 export default Pagination;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Array.from({ length: totalPages }, (_, index) => ...) crea un array con la longitud igual al número total de páginas (totalPages). 
 //El segundo argumento es una función que se ejecuta para cada elemento del array. Aquí, estamos usando el índice index para crear los botones de paginación.

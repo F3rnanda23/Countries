@@ -19,19 +19,19 @@ const ALL = 'ALL';
 
 const ButtonsToOrder = ()=>{
     const countries = useSelector(state => state.country);
-    const countriesOrder = useSelector(state => state.currentOrderType); //estado para  orden 
-    const currentFilterType = useSelector(state => state.currentFilteredType);// estado para  filtrado
-    const tourism = useSelector(state => state.tourism);// estado para tourism, los trae getAllTourism
+    const countriesOrder = useSelector(state => state.currentOrderType); //estado para m orden 
+    const currentFilterType = useSelector(state => state.currentFilteredType);// estado para  m filtrado
+    const tourism = useSelector(state => state.tourism);// estado para tourism, los trae m getAllTourism
 
     const dispatch = useDispatch();
 
-    const [selectedOrder, setSelectedOrder] = useState(countriesOrder); //mantener orden y filtrado
-    const [selectedContinent, setSelectedContinent] = useState(currentFilterType);  // mantener continentes
+    const [selectedOrder, setSelectedOrder] = useState(countriesOrder); // orden y filtrado
+    const [selectedContinent, setSelectedContinent] = useState(currentFilterType);  //  continentes
     const [selectedTourism, setSelectedTourism] = useState('');  //turismo
 
     useEffect(() => {
         if (countriesOrder != ""){
-            onClickOrder({target:{value:countriesOrder}});// aqui se le pasa el target value ya que en onClickOrder recibe un evento
+            onClickOrder({target:{value:countriesOrder}});// aqui se le pasa el target value al event de onClickOrder 
         }
         if (currentFilterType != ""){
             onClickFilter({target:{value:currentFilterType}});
@@ -66,7 +66,7 @@ const ButtonsToOrder = ()=>{
             case POPULATION_ASC:
                 setSelectedOrder(POPULATION_ASC);
                 orderOfCountries =onSearchPopulatAscend(countriesFilter); 
-                dispatch(updateCurrentOrderType(POPULATION_ASC));
+                dispatch(updateCurrentOrderType(POPULATION_ASC));//guarda el tipo de orden
                 break;
             case POPULATION_DESC:
                 setSelectedOrder(POPULATION_DESC);
